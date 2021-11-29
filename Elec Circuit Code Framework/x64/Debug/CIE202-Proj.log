@@ -1,0 +1,10 @@
+﻿  ActionAddRes.cpp
+  ApplicationManager.cpp
+  Battery.cpp
+  Component.cpp
+  Connection.cpp
+  Resistor.cpp
+  UI.cpp
+  main.cpp
+  Generating Code...
+  CIE202-Proj.vcxproj -> D:\Git_projects\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe

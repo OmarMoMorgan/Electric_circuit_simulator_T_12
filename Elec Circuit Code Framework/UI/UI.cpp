@@ -182,8 +182,9 @@ void UI::CreateDesignToolBar()
 	//First prepare List of images for each menu item
 	string MenuItemImages[ITM_DSN_CNT];
 	MenuItemImages[ITM_RES] = "images\\Menu\\Menu_Resistor.jpg";
+	MenuItemImages[ITM_BAT] = "images\\Menu\\Menu_battery.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
-
+	
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
@@ -225,6 +226,17 @@ void UI::DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected) const
 
 //TODO: Add similar functions to draw all other components
 
+void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Battery_HI.jpg";	//use image of highlighted Battery
+	else
+		ResImage = "Images\\Comp\\Battery.jpg";	//use image of the normal battery
+
+	//Draw Battery at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
 
 
 
