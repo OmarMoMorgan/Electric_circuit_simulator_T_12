@@ -98,6 +98,8 @@ ActionType UI::GetUserAction() const
 			switch (ClickedItemOrder)
 			{
 			case ITM_RES:	return ADD_RESISTOR;
+			case ITM_BAT: return ADD_BATTERY;
+			case ITM_SWI: return ADD_SWITCH;
 			case ITM_EXIT:	return EXIT;	
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -183,6 +185,7 @@ void UI::CreateDesignToolBar()
 	string MenuItemImages[ITM_DSN_CNT];
 	MenuItemImages[ITM_RES] = "images\\Menu\\Menu_Resistor.jpg";
 	MenuItemImages[ITM_BAT] = "images\\Menu\\Menu_battery.jpg";
+	MenuItemImages[ITM_SWI] = "images\\Menu\\Menu_Resistor.jpg";	//should be changed to actual switch image
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	
 	//TODO: Prepare image for each menu item and add it to the list
@@ -230,14 +233,25 @@ void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
 	string ResImage;
 	if (selected)
-		ResImage = "Images\\Comp\\Battery_HI.jpg";	//use image of highlighted Battery
+		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted Battery //other image should be used
 	else
-		ResImage = "Images\\Comp\\Battery.jpg";	//use image of the normal battery
+		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal battery /other image should be used
 
 	//Draw Battery at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 
+void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted Switch //should be changed to actual switch image
+	else
+		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal Switch //should be changed to actual switch image
+
+	//Draw Switch at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
 
 
 void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const

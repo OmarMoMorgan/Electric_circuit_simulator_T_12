@@ -40,6 +40,7 @@ class UI
 		//If you want to change the menu items order, just change the order here
 		ITM_RES,		//Resistor item in menu
 		ITM_BAT,		//Battery item in menu
+		ITM_SWI,		//switch item in menu
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
 		
@@ -116,6 +117,9 @@ public:
 
 	//Draws a Battery
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+
+	//Draws a switch
+	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
 	// Draws Connection
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;

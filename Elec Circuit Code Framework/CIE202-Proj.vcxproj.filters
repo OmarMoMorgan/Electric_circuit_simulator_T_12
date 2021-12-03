@@ -144,6 +144,15 @@
     <ClCompile Include="Components\Battery.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionAddBat.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Switch.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionAddSwi.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -225,6 +234,15 @@
     </ClInclude>
     <ClInclude Include="Components\Battery.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddBat.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Switch.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddSwi.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
