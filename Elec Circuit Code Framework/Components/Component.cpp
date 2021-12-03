@@ -13,6 +13,10 @@ Component::Component()
 
 }
 
+GraphicsInfo* Component::GetGraphicsInfo() {
+	return m_pGfxInfo;
+}
+
 Component::~Component()
 {}
 

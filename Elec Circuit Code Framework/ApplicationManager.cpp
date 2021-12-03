@@ -31,6 +31,8 @@ ActionType ApplicationManager::GetUserAction()
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
 	Action* pAct = nullptr;
+	int x = 0;
+	int y = 0;
 	switch (ActType)
 	{
 		case ADD_RESISTOR:
@@ -43,6 +45,27 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case ADD_SWITCH:
 			pAct = new ActionAddSwi(this);
+			break;
+
+		case SELECT:
+			pUI->GetPointClicked(x, y);
+			for (int i = 0; i < CompCount; i++) {
+				if (CompList[i]->GetGraphicsInfo() == nullptr) {
+					pUI->PrintMsg("empty space clicked");
+				}
+				else {
+					if (CompList[i]->GetGraphicsInfo()->PointsList[0].x < x
+						&& CompList[i]->GetGraphicsInfo()->PointsList[1].x > x && CompList[i]->GetGraphicsInfo()->PointsList[0].y < y
+						&& CompList[i]->GetGraphicsInfo()->PointsList[1].y > y) {
+						CompList[i]->Draw(pUI);
+						pUI->PrintMsg("the condition is working");
+						break;
+					}
+					else {
+						pUI->PrintMsg("the emoty space is working");
+					}
+				}
+			}
 			break;
 
 		case ADD_CONNECTION:
