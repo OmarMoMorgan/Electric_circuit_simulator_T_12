@@ -2,6 +2,7 @@
 #include "Actions\ActionAddRes.h"
 #include "Actions\ActionAddBat.h"
 #include "Actions\ActionAddSwi.h"
+#include "Actions\ActionAddBulb.h"
 #include"Actions\ActionAddGRD.h"
 #include "Actions\ActionConnection.h"
 
@@ -58,6 +59,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_BATTERY:
 			pAct = new ActionAddBat(this);
 			break;
+
+		case ADD_BULB:
+			pAct = new ActionAddBulb(this);
+			break;
+
 
 		case ADD_SWITCH:
 			pAct = new ActionAddSwi(this);

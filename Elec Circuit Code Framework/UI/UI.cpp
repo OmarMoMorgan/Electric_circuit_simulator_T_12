@@ -99,9 +99,11 @@ ActionType UI::GetUserAction() const
 			{
 			case ITM_RES:	return ADD_RESISTOR;
 			case ITM_GRD:   return ADD_GROUND;
-			case ITM_BAT: return ADD_BATTERY;
-			case ITM_SWI: return ADD_SWITCH;
-			case ITM_EXIT:	return EXIT;	
+			case ITM_BAT:   return ADD_BATTERY;
+			case ITM_SWI:   return ADD_SWITCH;
+			case ITM_BULB:  return ADD_BULB;
+			case ITM_EXIT:	return EXIT;
+				
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
@@ -187,8 +189,10 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_RES] = "images\\Menu\\Menu_Resistor.jpg";
 	MenuItemImages[ITM_GRD] = "images\\Menu\\Menu_Ground.jpg";
 	MenuItemImages[ITM_BAT] = "images\\Menu\\Menu_battery.jpg";
+	MenuItemImages[ITM_BULB] = "images\\Menu\\Menu_Bulb.jpg";
 	MenuItemImages[ITM_SWI] = "images\\Menu\\Menu_Resistor.jpg";	//should be changed to actual switch image
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
+
 	
 	//TODO: Prepare image for each menu item and add it to the list
 
@@ -224,6 +228,18 @@ void UI::DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected) const
 		ResImage ="Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted resistor
 	else  
 		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal resistor
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+
+void UI::DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Bulb_HI.jpg";	//use image of highlighted resistor
+	else
+		ResImage = "Images\\Comp\\Bulb.jpg";	//use image of the normal resistor
 
 	//Draw Resistor at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);

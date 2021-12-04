@@ -162,6 +162,12 @@
     <ClCompile Include="Actions\ActionAddGRD.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionAddBulb.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Bulb.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -261,6 +267,12 @@
     </ClInclude>
     <ClInclude Include="Actions\ActionAddGRD.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddBulb.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Bulb.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

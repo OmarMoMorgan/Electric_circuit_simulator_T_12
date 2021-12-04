@@ -9,7 +9,7 @@ enum ActionType
 	ADD_RESISTOR,		//Add a resistor
 	ADD_GROUND,          // Add a ground
 	ADD_SWITCH,			//Add Switch
-	ADD_LAMP,			//Add LAMP
+	ADD_BULB,			//Add Bulb
 	ADD_CONNECTION,		//Add Wire Connection
 	ADD_BATTERY,		//Add battery /omar
 

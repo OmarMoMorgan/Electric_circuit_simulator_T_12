@@ -42,6 +42,7 @@ class UI
 		ITM_GRD,        // Ground item in menu
 		ITM_BAT,		//Battery item in menu
 		ITM_SWI,		//switch item in menu
+		ITM_BULB,       //bulb item in menu
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
 		
@@ -118,7 +119,8 @@ public:
 
 	// draws Ground
 	void DrawGround(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
-
+	// Draws a blub
+	void DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	//Draws a Battery
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
