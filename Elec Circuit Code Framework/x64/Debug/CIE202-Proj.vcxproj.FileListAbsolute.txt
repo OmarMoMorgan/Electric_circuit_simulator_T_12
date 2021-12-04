@@ -1,1 +1,2 @@
 D:\Git_projects\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
+C:\Users\Mahmoud\Desktop\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe

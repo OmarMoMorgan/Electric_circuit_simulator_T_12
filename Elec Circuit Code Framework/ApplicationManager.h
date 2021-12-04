@@ -5,16 +5,20 @@
 #include "UI\UI.h"
 #include "Actions\Action.h"
 #include "Components\Component.h"
+#include "Actions\ActionConnection.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
 {
 
 	enum { MaxCompCount = 200 };	//Max no of Components	
-
+	enum { MaxConnectionCount = 300 }; //Max no of connections
 private:
 	int CompCount;		//Actual number of Components
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
+
+	int ConnectionCount;
+	Connection* ConnectionList[MaxConnectionCount];
 
 	UI* pUI; //pointer to the UI
 
@@ -39,7 +43,7 @@ public:
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
-
+	void AddConnection(Connection* pConnection);
 	//destructor
 	~ApplicationManager();
 };

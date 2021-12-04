@@ -2,6 +2,8 @@
 #include "Actions\ActionAddRes.h"
 #include "Actions\ActionAddBat.h"
 #include "Actions\ActionAddSwi.h"
+#include"Actions\ActionAddGRD.h"
+#include "Actions\ActionConnection.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -11,6 +13,12 @@ ApplicationManager::ApplicationManager()
 	for(int i=0; i<MaxCompCount; i++)
 		CompList[i] = nullptr;
 
+	// for adding connections
+	ConnectionCount = 0;
+
+	for (int i = 0; i < MaxConnectionCount; i++)
+		ConnectionList[i] = nullptr;
+
 	//Creates the UI Object & Initialize the UI
 	pUI = new UI;
 }
@@ -18,6 +26,11 @@ ApplicationManager::ApplicationManager()
 void ApplicationManager::AddComponent(Component* pComp)
 {
 	CompList[CompCount++] = pComp;		
+}
+////////////////////////////////////////////////////////////////////
+void ApplicationManager::AddConnection(Connection* pConnection)
+{
+	ConnectionList[ConnectionCount++] = pConnection;
 }
 ////////////////////////////////////////////////////////////////////
 
@@ -37,6 +50,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 		case ADD_RESISTOR:
 			pAct= new ActionAddRes(this);
+			break;
+		case ADD_GROUND:
+			pAct = new ActionAddGRD(this);
 			break;
 
 		case ADD_BATTERY:
@@ -69,6 +85,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case ADD_CONNECTION:
+			pAct = new ActionConnection(this);
 			//TODO: Create AddConection Action here
 			break;
 	
@@ -88,8 +105,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 void ApplicationManager::UpdateInterface()
 {
+
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(pUI);
+
+		for (int i = 0; i < ConnectionCount; i++)
+			ConnectionList[i]->Draw(pUI);
 
 }
 
@@ -103,6 +124,11 @@ UI* ApplicationManager::GetUI()
 
 ApplicationManager::~ApplicationManager()
 {
+	// for deleting connections
+	//for (int i = 0; i < ConnectionCount; i++)
+	//	delete ConnectionList[i];
+	//delete pUI;
+
 	for(int i=0; i<CompCount; i++)
 		delete CompList[i];
 	delete pUI;

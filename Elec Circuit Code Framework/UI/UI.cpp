@@ -98,6 +98,7 @@ ActionType UI::GetUserAction() const
 			switch (ClickedItemOrder)
 			{
 			case ITM_RES:	return ADD_RESISTOR;
+			case ITM_GRD:   return ADD_GROUND;
 			case ITM_BAT: return ADD_BATTERY;
 			case ITM_SWI: return ADD_SWITCH;
 			case ITM_EXIT:	return EXIT;	
@@ -184,6 +185,7 @@ void UI::CreateDesignToolBar()
 	//First prepare List of images for each menu item
 	string MenuItemImages[ITM_DSN_CNT];
 	MenuItemImages[ITM_RES] = "images\\Menu\\Menu_Resistor.jpg";
+	MenuItemImages[ITM_GRD] = "images\\Menu\\Menu_Ground.jpg";
 	MenuItemImages[ITM_BAT] = "images\\Menu\\Menu_battery.jpg";
 	MenuItemImages[ITM_SWI] = "images\\Menu\\Menu_Resistor.jpg";	//should be changed to actual switch image
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
@@ -252,10 +254,21 @@ void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Draw Switch at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
+void UI::DrawGround(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Ground_HI.jpg";	//use image of highlighted resistor
+	else
+		ResImage = "Images\\Comp\\Ground.jpg";	//use image of the normal resistor
 
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
 
 void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 {
+	//pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);
 	//TODO: Add code to draw connection
 }
 
