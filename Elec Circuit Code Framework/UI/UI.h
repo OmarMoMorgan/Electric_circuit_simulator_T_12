@@ -122,7 +122,7 @@ public:
 	// Draws a blub
 	void DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	//Draws a Battery
-	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected ) const;
 
 	//Draws a switch
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;

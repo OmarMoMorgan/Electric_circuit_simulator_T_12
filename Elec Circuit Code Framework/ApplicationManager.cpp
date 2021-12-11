@@ -47,6 +47,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	Action* pAct = nullptr;
 	int x = 0;
 	int y = 0;
+	int flag = 0;
 	switch (ActType)
 	{
 		case ADD_RESISTOR:
@@ -79,13 +80,20 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					if (CompList[i]->GetGraphicsInfo()->PointsList[0].x < x
 						&& CompList[i]->GetGraphicsInfo()->PointsList[1].x > x && CompList[i]->GetGraphicsInfo()->PointsList[0].y < y
 						&& CompList[i]->GetGraphicsInfo()->PointsList[1].y > y) {
+						CompList[i]->SetSelection(true);
 						CompList[i]->Draw(pUI);
 						pUI->PrintMsg("the condition is working");
+						flag = 1;
 						break;
 					}
-					else {
-						pUI->PrintMsg("the emoty space is working");
-					}
+				}
+			}
+			if (flag == 0) {
+				for (int i = 0; i < CompCount; i++) {
+					CompList[i]->SetSelection(false);
+					CompList[i]->Draw(pUI);
+
+					pUI->PrintMsg("the empty space is working");
 				}
 			}
 			break;

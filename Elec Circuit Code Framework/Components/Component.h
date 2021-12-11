@@ -25,6 +25,8 @@ protected:
 
 	GraphicsInfo *m_pGfxInfo;	//The parameters required to draw a component
 
+	bool selected_o = false;
+
 public:
 	Component(GraphicsInfo *r_GfxInfo);
 	//void setTerm1Volt(double v);		//sets the voltage at terminal1
@@ -43,7 +45,15 @@ public:
 
 	//virtual void setInputPinStatus(int n, STATUS s)=0;	//set status of Inputpin # n, to be used by connection class.
 
-	
+	//getter for the boolean that says is it selected or not
+	bool GetSelection() {
+		return selected_o;
+	}
+
+	void SetSelection(bool next) {
+		 selected_o = next;
+	}
+
 	Component();	
 	
 	//Destructor must be virtual
