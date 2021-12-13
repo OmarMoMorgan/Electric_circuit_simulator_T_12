@@ -17,5 +17,5 @@ void Resistor::Operate()
 
 void Resistor::Save(int id, ofstream& MyFile, const string label, int value) {
 	MyFile.width(15);
-	MyFile << "RES" << "\t" << id << "\t" << label << "\t" << value << "\t" << m_pGfxInfo;
+	MyFile << "RES" << "\t" << id << "\t" << label << "\t" << value << "\t" << m_pGfxInfo->PointsList[0].x << "\t" << m_pGfxInfo->PointsList[0].y;
 }

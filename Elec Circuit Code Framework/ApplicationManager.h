@@ -55,7 +55,10 @@ public:
 	~ApplicationManager();
 
 	void Save(ofstream &MYFile);
+	void Load(ifstream& MYFile);
 	void Exit();
+	int* getCenterOfTheComponent();
+	void SetAllFalse();
 };
 
 #endif

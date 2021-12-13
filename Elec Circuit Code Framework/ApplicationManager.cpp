@@ -7,6 +7,7 @@
 #include "Actions\ActionConnection.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionExit.h"
+#include "Actions\ActionLoad.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -111,6 +112,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionSave(this);
 			break;
 
+		case LOAD:
+			pAct = new ActionLoad(this);
+			break;
+
 		case EXIT:
 			///TODO: create ExitAction here
 			//pAct = new ActionExit(this);
@@ -165,8 +170,61 @@ void ApplicationManager::Save(ofstream &MYFile) {
 	}
 }
 /////////////////////////////////////////////////////////////////////
+void ApplicationManager::Load(ifstream& MYFile) {
+	int Thecompnum = 0;
+	Component* temp;
+	string itemtype;
+	MYFile >> Thecompnum;
+	for (int i = 0; i < Thecompnum; i++) {
+		MYFile >> itemtype;
+		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
+		if (itemtype == "BAT") {
+			Battery* pR = new Battery(pGInfo);
+			AddComponent(pR);
+			pR->Load(i, MYFile);
+		}else if(itemtype == "BUL"){
+			Battery* pR = new Battery(pGInfo);
+			AddComponent(pR);
+			pR->Load(i, MYFile);
+		}
+		else if (itemtype == "SWI") {
+			Battery* pR = new Battery(pGInfo);
+			AddComponent(pR);
+			pR->Load(i, MYFile);
+		}
+		else if (itemtype == "RES") {
+			Battery* pR = new Battery(pGInfo);
+			AddComponent(pR);
+			pR->Load(i, MYFile);
+		}
+		else if (itemtype == "GRO") {
+			Battery* pR = new Battery(pGInfo);
+			AddComponent(pR);
+			pR->Load(i, MYFile);
+		}
+	}
+}
+/////////////////////////////////////////////////////////////////////
 void ApplicationManager::Exit() {	
 	for (int i = 0; i < CompCount; i++) {
 		delete CompList[i];
+	}
+}
+/////////////////////////////////////////////////////////////////////
+int* ApplicationManager::getCenterOfTheComponent() {
+	int* Co = new int[2];
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->GetSelection() == true) {
+			Co[0] = CompList[i]->GetGraphicsInfo()->PointsList[0].x;
+			Co[1] = CompList[i]->GetGraphicsInfo()->PointsList[0].y;
+		}
+	}
+
+	return Co;
+}
+
+void ApplicationManager::SetAllFalse() {
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i]->SetSelection(false);
 	}
 }

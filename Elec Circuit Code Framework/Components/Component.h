@@ -6,6 +6,7 @@
 #include "Connection.h"
 #include <iostream>
 #include <fstream>
+#include <string.h>
 using namespace std;
 
 //Base class for all components (resistor, capacitor,....etc) .
@@ -54,6 +55,9 @@ public:
 
 	//the save function
 	virtual void Save(int id, ofstream& MyFile, const string label, int value) = 0;
+
+	//the Load function
+	virtual void Load(int id, ifstream& MyFile) = 0;
 
 	//ITM_Data *AHMEDSAIDSO;
 
