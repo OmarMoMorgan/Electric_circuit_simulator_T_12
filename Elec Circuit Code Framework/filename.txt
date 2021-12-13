@@ -1,4 +1,5 @@
-3
-            BUL	1	omar	1	358	258
-            SWI	2	omar	1	111	357
-            BAT	3	omar	1	146	197
+4
+            BAT	1	omar	1	205	221
+            GRO	2	omar	1	397	312
+            SWI	3	omar	1	465	232
+            SWI	4	omar	1	745	275

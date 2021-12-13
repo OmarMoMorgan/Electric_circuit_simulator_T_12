@@ -19,4 +19,21 @@ GraphicsInfo* Component::GetGraphicsInfo() {
 
 Component::~Component()
 {}
+void Component::setLabel(string text)
+{
+	this->m_Label;
+}
+string Component::getLabel()
+{
+	return m_Label;
+}
+//value
+void Component::setValue(string v)
+{
+	this->value;
+}
+string Component::getvalue()
+{
+	return value;
+}
 

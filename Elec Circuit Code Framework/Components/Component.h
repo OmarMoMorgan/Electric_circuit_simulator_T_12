@@ -14,6 +14,7 @@ class Component
 {
 private:
 	string m_Label;
+	string value;
 protected:
 	//Each component has two ending terminals (term1, term2)
 	double term1_volt, term2_volt;	//voltage at terminals 1&2
@@ -57,7 +58,7 @@ public:
 	virtual void Save(int id, ofstream& MyFile, const string label, int value) = 0;
 
 	//the Load function
-	virtual void Load(int id, ifstream& MyFile) = 0;
+	//virtual void Load(int id, ifstream& MyFile) = 0;
 
 	//ITM_Data *AHMEDSAIDSO;
 
@@ -65,6 +66,10 @@ public:
 		 selected_o = next;
 	}
 
+	void setLabel(string text);
+	string getLabel();
+	void setValue(string v);
+	string getvalue();
 	Component();	
 	
 	//Destructor must be virtual

@@ -51,10 +51,18 @@ class UI
 		ITM_BAT,		//Battery item in menu
 		ITM_SWI,		//switch item in menu
 		ITM_BULB,       //bulb item in menu
-		ITM_EXIT,		//Exit item
+		ITM_CABLE,      // Calbe item in menu
+		ITM_COPY,
+		ITM_PASTE,
+		ITM_DELETE,
+		ITM_CUT,
+		ITM_SIM,   // Switch to simulation mode Button
+		ITM_UNDO,
+		ITM_REDO,
+		ITM_LAB,		//Exit item
 		//TODO: Add more items names here
 		ITM_SAVE,
-
+		ITM_EXIT,
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
 	
 	};
@@ -64,11 +72,12 @@ class UI
 	{
 		//Note: Items are ordered here as they appear in menu
 		ITM_CIRC_SIM,	//Circuit Simulate menu item
-	
+		ITM_Switch_ON_OFF,
+		ITM_EXIT_1,
 		//TODO:Add more items names here
-	
+
 		ITM_SIM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
-	
+
 	};
 
 
@@ -108,7 +117,16 @@ public:
 
 	ActionType GetUserAction() const; //Reads the user click and maps it to an action
 
-	
+	//////////////////////////////////////////////////////////
+	// 
+	// 
+	// 
+	void ClearWindow()const;
+	void DO(bool x);
+		//Returns a string entered by the user
+	void drawtext(int mx, int my, string mm) const;
+	// clear label
+	void UI::ClearLabel(int mx, int my) const;
 	// Output Functions  ---------------------------
 	void ChangeTitle(string Title) const;
 

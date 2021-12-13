@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -113,6 +113,7 @@
     <ClCompile Include="Actions\ActionAddBat.cpp" />
     <ClCompile Include="Actions\ActionAddBulb.cpp" />
     <ClCompile Include="Actions\ActionAddGRD.cpp" />
+    <ClCompile Include="Actions\ActionAddLabel.cpp" />
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwi.cpp" />
     <ClCompile Include="Actions\ActionConnection.cpp" />
@@ -120,6 +121,8 @@
     <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
+    <ClCompile Include="Actions\ActionToDesign.cpp" />
+    <ClCompile Include="Actions\ActionToSim.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -171,6 +174,7 @@
     <ClInclude Include="Actions\ActionAddBat.h" />
     <ClInclude Include="Actions\ActionAddBulb.h" />
     <ClInclude Include="Actions\ActionAddGRD.h" />
+    <ClInclude Include="Actions\ActionAddLabel.h" />
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwi.h" />
     <ClInclude Include="Actions\ActionConnection.h" />
@@ -178,6 +182,8 @@
     <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
+    <ClInclude Include="Actions\ActionToDesign.h" />
+    <ClInclude Include="Actions\ActionToSim.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

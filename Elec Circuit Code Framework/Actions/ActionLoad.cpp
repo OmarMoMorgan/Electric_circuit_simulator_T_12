@@ -26,10 +26,10 @@ void ActionLoad::Execute()
 		pUI->PrintMsg("error couldn't open file");
 		
 	}
-	else {
+	/*else {
 		pManager->Load(MyFile);
 		pUI->PrintMsg("loading circuit done");
-	}
+	}*/
 
 	//pManager->Save(MyFile);
 

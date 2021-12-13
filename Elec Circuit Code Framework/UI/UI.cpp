@@ -20,7 +20,38 @@ UI::UI()
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
 }
+void UI::ClearWindow()const
+{
+	//Overwrite using bachground color to erase the message
+	pWind->SetPen(BkGrndColor);
+	pWind->SetBrush(BkGrndColor);
+	pWind->DrawRectangle(0, 0, width, height);
+}
+void UI::DO(bool x) {
+	if (x) {
+		AppMode = DESIGN;	//Design Mode is the mode now
 
+		ClearStatusBar();     // Clear any Text in the Status Bar
+		ClearWindow();         /// For drawing all the background in White
+
+
+		ChangeTitle("Logic Simulator Project");
+
+		CreateDesignToolBar();	//Create the desgin toolbar
+		CreateStatusBar();		//Create Status bar
+	}
+	else {
+		AppMode = SIMULATION;	//Simulation Mode is the mode now
+
+
+		ClearStatusBar();                  // Clear any Text in the Status Bar
+		ClearWindow();                  /// For drawing all the background in White
+
+		ChangeTitle("The Simulation Mode");
+		CreateSimulationToolBar();	//Create the Simulation toolbar
+		CreateStatusBar();		//Create Status bar
+	}
+}
 
 int UI::getCompWidth() const
 {
@@ -80,15 +111,15 @@ string UI::GetSrting()
 
 //This function reads the position where the user clicks to determine the desired action
 ActionType UI::GetUserAction() const
-{	
-	int x,y;
+{
+	int x, y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
-	if(AppMode == DESIGN )	//application is in design mode
+	if (AppMode == DESIGN)	//application is in design mode
 	{
 		//[1] If user clicks on the Toolbar
-		if ( y >= 0 && y < ToolBarHeight)
-		{	
+		if (y >= 0 && y < ToolBarHeight)
+		{
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
 			int ClickedItemOrder = (x / ToolItemWidth);
@@ -102,28 +133,63 @@ ActionType UI::GetUserAction() const
 			case ITM_BAT:   return ADD_BATTERY;
 			case ITM_SWI:   return ADD_SWITCH;
 			case ITM_BULB:  return ADD_BULB;
-			case ITM_EXIT:	return EXIT;
+			case ITM_CABLE: return ADD_CONNECTION;
+			case ITM_COPY: return COPY;
+			case ITM_SIM: return SIM_MODE;
+			case ITM_LAB: return ADD_Label;
+			case ITM_CUT: return CUT;
+			case ITM_PASTE: return PASTE;
+			case ITM_DELETE: return DEL;
 			case ITM_SAVE:	return SAVE;
-				
-			
+
+			case ITM_EXIT:	return EXIT;
+
+
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
 		}
-	
+
 		//[2] User clicks on the drawing area
-		if ( y >= ToolBarHeight && y < height - StatusBarHeight)
+		if (y >= ToolBarHeight && y < height - StatusBarHeight)
 		{
 			return SELECT;	//user want to select/unselect a statement in the flowchart
 		}
-		
+
 		//[3] User clicks on the status bar
 		return STATUS_BAR;
 	}
 	else	//Application is in Simulation mode
 	{
-		return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
-	}
+		if (y >= 0 && y < ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / ToolItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
+			switch (ClickedItemOrder)
+			{
+			case ITM_CIRC_SIM:	return DSN_MODE;
+				//case ITM_Switch_ON_OFF: return ADD_SWITCH;
+
+			case ITM_EXIT_1:	return EXIT;
+
+
+			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
+			}
+		}
+
+		//[2] User clicks on the drawing area
+		if (y >= ToolBarHeight && y < height - StatusBarHeight)
+		{
+			return SELECT;	//user want to select/unselect a statement in the flowchart
+		}
+
+		//[3] User clicks on the status bar
+		return STATUS_BAR;
+	}
+	//return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
 }
 
 
@@ -170,12 +236,24 @@ void UI::ClearStatusBar()const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Clears the drawing (degin) area
+
 void UI::ClearDrawingArea() const
 {
 	pWind->SetPen(RED, 1);
 	pWind->SetBrush(WHITE);
 	pWind->DrawRectangle(0, ToolBarHeight, width, height - StatusBarHeight);
 	
+}
+void UI::drawtext(int mx, int my, string mm) const
+{
+	pWind->SetPen(RED, 5);
+	return pWind->DrawString(mx, my, mm);
+}
+void UI::ClearLabel(int x, int y) const
+{
+	pWind->SetPen(BkGrndColor);
+	pWind->SetBrush(BkGrndColor);
+	pWind->DrawRectangle(x, y, 400, 100);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the Design mode
@@ -193,6 +271,17 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_BULB] = "images\\Menu\\Menu_Bulb.jpg";
 	MenuItemImages[ITM_SWI] = "images\\Menu\\Menu_Resistor.jpg";	//should be changed to actual switch image
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
+	MenuItemImages[ITM_CABLE] = "images\\Menu\\Menu_Cable.jpg";
+	MenuItemImages[ITM_SIM] = "images\\Menu\\Menu_Switch_To_Simulation.jpeg";     // Icon of Switch to Simulation Mode
+	MenuItemImages[ITM_COPY] = "images\\Menu\\Menu_Copy.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\Menu\\Menu_Paste1.jpg";
+	MenuItemImages[ITM_CUT] = "images\\Menu\\Menu_Cut.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\Menu\\Menu_Delete.jpg";
+	MenuItemImages[ITM_UNDO] = "images\\Menu\\Menu_Undo.jpg";
+	MenuItemImages[ITM_REDO] = "images\\Menu\\Menu_Redo.jpg";
+
+	MenuItemImages[ITM_LAB] = "images\\Menu\\Menu_Label.jpeg";
+
 	MenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_Exit.jpg";
 
 	
@@ -214,8 +303,22 @@ void UI::CreateSimulationToolBar()
 {
 	AppMode = SIMULATION;	//Simulation Mode
 
-	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
 
+	string MenuItemImages[ITM_SIM_CNT];
+	MenuItemImages[ITM_CIRC_SIM] = "images\\Menu\\Menu_Switch_To_Design.jpeg";
+	MenuItemImages[ITM_Switch_ON_OFF] = "images\\Menu\\Menu_Switch.jpg";
+
+	MenuItemImages[ITM_EXIT_1] = "images\\Menu\\Menu_Exit.jpg";
+
+	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
+	//Draw menu item one image at a time
+	for (int i = 0; i < ITM_SIM_CNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight);
 
 }
 
@@ -284,9 +387,17 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, bool selected) const
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 
-void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
+void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
-	//pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);
+	if (selected) {
+		pWind->SetPen(RED, 3);
+		pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);
+	}
+	else {
+		pWind->SetPen(BLUE, 3);
+		pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);
+	}
+
 	//TODO: Add code to draw connection
 }
 

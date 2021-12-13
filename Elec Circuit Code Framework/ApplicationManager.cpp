@@ -8,7 +8,9 @@
 #include "Actions\ActionSave.h"
 #include "Actions\ActionExit.h"
 #include "Actions\ActionLoad.h"
-
+#include "Actions/ActionToSim.h"
+#include "Actions/ActionToDesign.h"
+#include "Actions/ActionAddLabel.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -48,9 +50,11 @@ ActionType ApplicationManager::GetUserAction()
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
 	Action* pAct = nullptr;
-	int x = 0;
-	int y = 0;
+	
 	int flag = 0;
+	
+	int flag_1 = 0;
+	int flag_2 = 0;
 	switch (ActType)
 	{
 		case ADD_RESISTOR:
@@ -75,14 +79,61 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECT:
 			pUI->GetPointClicked(x, y);
+
+			for (int i = 0; i < ConnectionCount; i++) {
+				if (ConnectionList[i]->Get_The_Data()->PointsList[1].x > ConnectionList[i]->Get_The_Data()->PointsList[0].x) {
+					if (ConnectionList[i]->Get_The_Data()->PointsList[1].x >= x && x >= ConnectionList[i]->Get_The_Data()->PointsList[0].x) {
+						flag_1 = 1;
+					}
+					else {
+						if (ConnectionList[i]->Get_The_Data()->PointsList[0].x >= x && x >= ConnectionList[i]->Get_The_Data()->PointsList[1].x) {
+							flag_1 = 1;
+						}
+					}
+
+
+				}
+				if (ConnectionList[i]->Get_The_Data()->PointsList[1].y > ConnectionList[i]->Get_The_Data()->PointsList[0].y) {
+					if (ConnectionList[i]->Get_The_Data()->PointsList[1].y >= y && y >= ConnectionList[i]->Get_The_Data()->PointsList[0].y) {
+						flag_2 = 1;
+					}
+					else {
+						if (ConnectionList[i]->Get_The_Data()->PointsList[0].y >= y && y >= ConnectionList[i]->Get_The_Data()->PointsList[1].y) {
+							flag_2 = 1;
+						}
+					}
+
+
+				}
+				cout << ConnectionList[i]->Get_Selection();
+
+
+				//cout << ConnectionList[i]->Get_The_Data()->PointsList[1].x<< " " << ConnectionList[i]->Get_The_Data()->PointsList[1].y << endl;cout << ConnectionList[i]->Get_The_Data()->PointsList[0].x<< " " << ConnectionList[i]->Get_The_Data()->PointsList[0].y << endl;
+				if (flag_1 == 1 && flag_2 == 1) {
+
+					ConnectionList[i]->Set_Selection(true);
+					ConnectionList[i]->Draw(pUI);
+					pUI->PrintMsg("The Connection is selected");
+
+					cout << ConnectionList[i]->Get_Selection();
+
+				}
+
+
+
+			}
 			for (int i = 0; i < CompCount; i++) {
 				if (CompList[i]->GetGraphicsInfo() == nullptr) {
+
 					pUI->PrintMsg("empty space clicked");
 				}
 				else {
-					if (CompList[i]->GetGraphicsInfo()->PointsList[0].x < x
+					if (CompList[i]->GetGraphicsInfo()->PointsList[0].x  < x
 						&& CompList[i]->GetGraphicsInfo()->PointsList[1].x > x && CompList[i]->GetGraphicsInfo()->PointsList[0].y < y
 						&& CompList[i]->GetGraphicsInfo()->PointsList[1].y > y) {
+
+
+
 						CompList[i]->SetSelection(true);
 						CompList[i]->Draw(pUI);
 						pUI->PrintMsg("the condition is working");
@@ -100,21 +151,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				}
 			}
 			break;
-			/*pAct = new ActionSelect(this);
-			break;*/
 
 		case ADD_CONNECTION:
 			pAct = new ActionConnection(this);
 			//TODO: Create AddConection Action here
+			break;
+
+		case SIM_MODE:
+			pAct = new ActionToSim(this);
+			break;
+		case DSN_MODE:
+			pAct = new ActionToDesign(this);
+			break;
+		case ADD_Label:
+			pAct = new ActionAddLab(this);
 			break;
 	
 		case SAVE:
 			pAct = new ActionSave(this);
 			break;
 
-		case LOAD:
+		/*case LOAD:
 			pAct = new ActionLoad(this);
-			break;
+			break;*/
 
 		case EXIT:
 			///TODO: create ExitAction here
@@ -129,6 +188,47 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 }
 ////////////////////////////////////////////////////////////////////
+int* ApplicationManager::getTerminalsOfTheComponent() {
+	int* Co = new int[1];
+
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->GetSelection() == true) {
+			if (x > (CompList[i]->GetGraphicsInfo()->PointsList[0].x + pUI->getCompWidth() / 2)) {
+				Co[0] = CompList[i]->GetGraphicsInfo()->PointsList[0].x + pUI->getCompWidth();
+				Co[1] = CompList[i]->GetGraphicsInfo()->PointsList[0].y + pUI->getCompHeight() / 2;
+			}
+			else {
+				Co[0] = CompList[i]->GetGraphicsInfo()->PointsList[0].x;
+				Co[1] = CompList[i]->GetGraphicsInfo()->PointsList[0].y + pUI->getCompHeight() / 2;
+			}
+
+		}
+	}
+
+	return Co;
+}
+
+
+void ApplicationManager::SetAllFalse() {
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i]->SetSelection(false);
+		CompList[i]->Draw(pUI);
+	}
+}
+Component* ApplicationManager::get_The_Selected_Component() {
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->GetSelection() == true) {
+			return CompList[i];
+		}
+	}
+}
+GraphicsInfo* ApplicationManager::get_The_Selected_Connection() {
+	for (int i = 0; i < ConnectionCount; i++) {
+		if (ConnectionList[i]->Get_Selection() == true) {
+			return ConnectionList[i]->Get_The_Data();
+		}
+	}
+}
 
 void ApplicationManager::UpdateInterface()
 {
@@ -170,40 +270,40 @@ void ApplicationManager::Save(ofstream &MYFile) {
 	}
 }
 /////////////////////////////////////////////////////////////////////
-void ApplicationManager::Load(ifstream& MYFile) {
-	int Thecompnum = 0;
-	Component* temp;
-	string itemtype;
-	MYFile >> Thecompnum;
-	for (int i = 0; i < Thecompnum; i++) {
-		MYFile >> itemtype;
-		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
-		if (itemtype == "BAT") {
-			Battery* pR = new Battery(pGInfo);
-			AddComponent(pR);
-			pR->Load(i, MYFile);
-		}else if(itemtype == "BUL"){
-			Battery* pR = new Battery(pGInfo);
-			AddComponent(pR);
-			pR->Load(i, MYFile);
-		}
-		else if (itemtype == "SWI") {
-			Battery* pR = new Battery(pGInfo);
-			AddComponent(pR);
-			pR->Load(i, MYFile);
-		}
-		else if (itemtype == "RES") {
-			Battery* pR = new Battery(pGInfo);
-			AddComponent(pR);
-			pR->Load(i, MYFile);
-		}
-		else if (itemtype == "GRO") {
-			Battery* pR = new Battery(pGInfo);
-			AddComponent(pR);
-			pR->Load(i, MYFile);
-		}
-	}
-}
+//void ApplicationManager::Load(ifstream& MYFile) {
+//	int Thecompnum = 0;
+//	Component* temp;
+//	string itemtype;
+//	MYFile >> Thecompnum;
+//	for (int i = 0; i < Thecompnum; i++) {
+//		MYFile >> itemtype;
+//		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
+//		if (itemtype == "BAT") {
+//			Battery* pR = new Battery(pGInfo);
+//			AddComponent(pR);
+//			pR->Load(i, MYFile);
+//		}else if(itemtype == "BUL"){
+//			Battery* pR = new Battery(pGInfo);
+//			AddComponent(pR);
+//			pR->Load(i, MYFile);
+//		}
+//		else if (itemtype == "SWI") {
+//			Battery* pR = new Battery(pGInfo);
+//			AddComponent(pR);
+//			pR->Load(i, MYFile);
+//		}
+//		else if (itemtype == "RES") {
+//			Battery* pR = new Battery(pGInfo);
+//			AddComponent(pR);
+//			pR->Load(i, MYFile);
+//		}
+//		else if (itemtype == "GRO") {
+//			Battery* pR = new Battery(pGInfo);
+//			AddComponent(pR);
+//			pR->Load(i, MYFile);
+//		}
+//	}
+//}
 /////////////////////////////////////////////////////////////////////
 void ApplicationManager::Exit() {	
 	for (int i = 0; i < CompCount; i++) {
@@ -223,8 +323,8 @@ int* ApplicationManager::getCenterOfTheComponent() {
 	return Co;
 }
 
-void ApplicationManager::SetAllFalse() {
-	for (int i = 0; i < CompCount; i++) {
-		CompList[i]->SetSelection(false);
-	}
+
+void ApplicationManager::Change_AppMode(bool x) {
+	pUI->DO(x);
+
 }

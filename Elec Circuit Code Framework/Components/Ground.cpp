@@ -13,6 +13,7 @@ void Ground::Draw(UI* pUI)
 void Ground::Operate()
 {
 
+
 }
 
 void Ground::Save(int id, ofstream& MyFile, const string label, int value) {

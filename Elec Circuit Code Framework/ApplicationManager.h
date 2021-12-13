@@ -22,7 +22,7 @@ private:
 	Connection* ConnectionList[MaxConnectionCount];
 
 	UI* pUI; //pointer to the UI
-
+	int x, y;
 
 public:
 
@@ -47,6 +47,12 @@ public:
 	//Getter function for the list of all components
 	int GetCompCount() { return CompCount; }
 	
+	void SetAllFalse();
+
+	Component* get_The_Selected_Component();
+	GraphicsInfo* get_The_Selected_Connection();
+	int* getTerminalsOfTheComponent();
+	int* getCenterOfTheComponent();
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
@@ -55,10 +61,11 @@ public:
 	~ApplicationManager();
 
 	void Save(ofstream &MYFile);
-	void Load(ifstream& MYFile);
+	//void Load(ifstream& MYFile);
 	void Exit();
-	int* getCenterOfTheComponent();
-	void SetAllFalse();
+	
+	
+	void Change_AppMode(bool x);
 };
 
 #endif

@@ -1,18 +1,2 @@
-﻿  ActionAddBat.cpp
-  ActionAddBulb.cpp
-  ActionAddGRD.cpp
-  ActionAddRes.cpp
-  ActionAddSwi.cpp
-  ActionConnection.cpp
-  ActionExit.cpp
-  ActionSave.cpp
-  ActionSelect.cpp
-  ApplicationManager.cpp
-  Battery.cpp
-  Bulb.cpp
-  Ground.cpp
-  Resistor.cpp
-  Switch.cpp
-  main.cpp
-  Generating Code...
-  CIE202-Proj.vcxproj -> D:\Git_projects\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
+﻿  UI.cpp
+  CIE202-Proj.vcxproj -> C:\Users\Mahmoud\Desktop\New_File\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
