@@ -1,0 +1,6 @@
+5
+            BUL	0	omar	1	000002354741BED0
+            SWI	1	omar	1	000002354741B750
+            BAT	2	omar	1	000002354740FDB0
+            SWI	3	omar	1	000002354743E500
+            BAT	4	omar	1	000002354743E230

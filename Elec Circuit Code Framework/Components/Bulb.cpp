@@ -14,3 +14,8 @@ void Bulb::Operate()
 {
 
 }
+
+void Bulb::Save(int id, ofstream& MyFile, const string label, int value) {
+	MyFile.width(15);
+	MyFile << "BUL" << "\t" << id << "\t" << label << "\t" << value << "\t" << m_pGfxInfo;
+}

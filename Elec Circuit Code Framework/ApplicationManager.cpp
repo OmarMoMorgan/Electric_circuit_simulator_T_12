@@ -5,6 +5,8 @@
 #include "Actions\ActionAddBulb.h"
 #include"Actions\ActionAddGRD.h"
 #include "Actions\ActionConnection.h"
+#include "Actions\ActionSave.h"
+#include "Actions\ActionExit.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -97,15 +99,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				}
 			}
 			break;
+			/*pAct = new ActionSelect(this);
+			break;*/
 
 		case ADD_CONNECTION:
 			pAct = new ActionConnection(this);
 			//TODO: Create AddConection Action here
 			break;
 	
+		case SAVE:
+			pAct = new ActionSave(this);
+			break;
 
 		case EXIT:
 			///TODO: create ExitAction here
+			//pAct = new ActionExit(this);
 			break;
 	}
 	if(pAct)
@@ -147,4 +155,18 @@ ApplicationManager::~ApplicationManager()
 		delete CompList[i];
 	delete pUI;
 	
+}
+/////////////////////////////////////////////////////////////////////
+void ApplicationManager::Save(ofstream &MYFile) {
+	MYFile << CompCount << "\n";
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i]->Save(i+1,MYFile , "omar", 1);
+		MYFile << "\n";
+	}
+}
+/////////////////////////////////////////////////////////////////////
+void ApplicationManager::Exit() {	
+	for (int i = 0; i < CompCount; i++) {
+		delete CompList[i];
+	}
 }

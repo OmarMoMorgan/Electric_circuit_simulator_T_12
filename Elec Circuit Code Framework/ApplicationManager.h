@@ -6,6 +6,7 @@
 #include "Actions\Action.h"
 #include "Components\Component.h"
 #include "Actions\ActionConnection.h"
+#include "Actions\ActionSelect.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -39,6 +40,12 @@ public:
 
 	//Gets a pointer to UI Object
 	UI* GetUI();
+
+	//Getter function for the list of all components
+	Component* GetListComponents() { return *CompList; }
+
+	//Getter function for the list of all components
+	int GetCompCount() { return CompCount; }
 	
 
 	//Adds a new component to the list of components
@@ -46,6 +53,9 @@ public:
 	void AddConnection(Connection* pConnection);
 	//destructor
 	~ApplicationManager();
+
+	void Save(ofstream &MYFile);
+	void Exit();
 };
 
 #endif

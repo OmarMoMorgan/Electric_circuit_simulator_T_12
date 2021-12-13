@@ -1,6 +1,6 @@
 #include "Switch.h"
 
-Switch::Switch(GraphicsInfo* r_GfxInfo) :Component(r_GfxInfo)
+Switch::Switch(GraphicsInfo* r_GfxInfo):Component(r_GfxInfo)
 {}
 
 void Switch::Draw(UI* pUI)
@@ -13,4 +13,9 @@ void Switch::Draw(UI* pUI)
 void Switch::Operate()
 {
 
+}
+
+void Switch::Save(int id, ofstream& MyFile, const string label, int value) {
+	MyFile.width(15);
+	MyFile << "SWI" << "\t" << id << "\t" << label << "\t" << value << "\t" << m_pGfxInfo;
 }

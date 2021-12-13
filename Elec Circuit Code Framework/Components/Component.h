@@ -4,7 +4,9 @@
 #include "..\Defs.h"
 #include "..\UI\UI.h"
 #include "Connection.h"
-
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 //Base class for all components (resistor, capacitor,....etc) .
 class Component
@@ -49,6 +51,11 @@ public:
 	bool GetSelection() {
 		return selected_o;
 	}
+
+	//the save function
+	virtual void Save(int id, ofstream& MyFile, const string label, int value) = 0;
+
+	//ITM_Data *AHMEDSAIDSO;
 
 	void SetSelection(bool next) {
 		 selected_o = next;

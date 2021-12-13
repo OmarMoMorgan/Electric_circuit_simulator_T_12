@@ -30,6 +30,14 @@ struct GraphicsInfo
 
 };
 
+//struct ITM_Data
+//{
+//	string shortname;
+//	int value;
+//	int id;
+//	GraphicsInfo* gfxinfo;
+//};
+
 
 class UI
 {
@@ -45,7 +53,7 @@ class UI
 		ITM_BULB,       //bulb item in menu
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
-		
+		ITM_SAVE,
 
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
 	

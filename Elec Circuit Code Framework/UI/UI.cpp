@@ -103,6 +103,7 @@ ActionType UI::GetUserAction() const
 			case ITM_SWI:   return ADD_SWITCH;
 			case ITM_BULB:  return ADD_BULB;
 			case ITM_EXIT:	return EXIT;
+			case ITM_SAVE:	return SAVE;
 				
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -192,6 +193,7 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_BULB] = "images\\Menu\\Menu_Bulb.jpg";
 	MenuItemImages[ITM_SWI] = "images\\Menu\\Menu_Resistor.jpg";	//should be changed to actual switch image
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_Exit.jpg";
 
 	
 	//TODO: Prepare image for each menu item and add it to the list
