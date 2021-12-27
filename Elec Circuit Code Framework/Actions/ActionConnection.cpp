@@ -33,7 +33,7 @@ void ActionConnection::Execute()
 	pGInfo->PointsList[0].x = y[0];
 	pGInfo->PointsList[0].y = y[1];
 
-	element->set_First_Component(pManager->get_The_Selected_Component()); // to set the first component in the connection
+	Component* cmpt1 = pManager->get_The_Selected_Component(); // to set the first component in the connection
 
 
 	pManager->SetAllFalse(); // unselect all componets
@@ -50,16 +50,15 @@ void ActionConnection::Execute()
 	z = pManager->getTerminalsOfTheComponent();
 	pGInfo->PointsList[1].x = z[0];
 	pGInfo->PointsList[1].y = z[1];
-	element->set_Second_Component(pManager->get_The_Selected_Component()); // Send the data of second component to connection object
+	Component* cmpt2 = pManager->get_The_Selected_Component(); // Send the data of second component to connection object
 
 
 	pManager->SetAllFalse();
 	pUI->ClearStatusBar();
 
-
-
-	element->set_Graphics_Info(pGInfo); // To set the coordinates to the connection object
-	Connection* pR = new Connection(pGInfo);
+	
+	
+	Connection* pR = new Connection(pGInfo,cmpt1,cmpt2);
 	pManager->AddConnection(pR);
 }
 

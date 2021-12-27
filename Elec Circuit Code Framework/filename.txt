@@ -1,5 +1,4 @@
-4
-            BAT	1	omar	1	205	221
-            GRO	2	omar	1	397	312
-            SWI	3	omar	1	465	232
-            SWI	4	omar	1	745	275
+3
+            SWI	1	omar	1	134	219
+            RES	2	omar	1	429	212
+            SWI	3	omar	1	496	317
