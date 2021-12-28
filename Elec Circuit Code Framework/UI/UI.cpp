@@ -128,19 +128,22 @@ ActionType UI::GetUserAction() const
 
 			switch (ClickedItemOrder)
 			{
-			case ITM_RES:	return ADD_RESISTOR;
-			case ITM_GRD:   return ADD_GROUND;
-			case ITM_BAT:   return ADD_BATTERY;
-			case ITM_SWI:   return ADD_SWITCH;
-			case ITM_BULB:  return ADD_BULB;
-			case ITM_CABLE: return ADD_CONNECTION;
-			case ITM_COPY: return COPY;
-			case ITM_SIM: return SIM_MODE;
-			case ITM_LAB: return ADD_Label;
-			case ITM_CUT: return CUT;
-			case ITM_PASTE: return PASTE;
+			case ITM_RES:	 return ADD_RESISTOR;
+			case ITM_GRD:    return ADD_GROUND;
+			case ITM_BAT:    return ADD_BATTERY;
+			case ITM_SWI:    return ADD_SWITCH;
+			case ITM_BULB:   return ADD_BULB;
+			case ITM_CABLE:  return ADD_CONNECTION;
+			case ITM_BUZ:    return ADD_BUZZER;
+			case ITM_FUSE:   return ADD_FUSE;
+			case ITM_COPY:   return COPY;
+			case ITM_SIM:    return SIM_MODE;
+			case ITM_LAB:    return ADD_Label;
+			case ITM_CUT:    return CUT;
+			case ITM_PASTE:  return PASTE;
 			case ITM_DELETE: return DEL;
-			case ITM_SAVE:	return SAVE;
+			case ITM_SAVE:	 return SAVE;
+			
 
 			case ITM_EXIT:	return EXIT;
 
@@ -253,7 +256,7 @@ void UI::ClearLabel(int x, int y) const
 {
 	pWind->SetPen(BkGrndColor);
 	pWind->SetBrush(BkGrndColor);
-	pWind->DrawRectangle(x, y, 400, 100);
+	pWind->DrawRectangle(x, y, 1500, 100);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the Design mode
@@ -269,6 +272,8 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_GRD] = "images\\Menu\\Menu_Ground.jpg";
 	MenuItemImages[ITM_BAT] = "images\\Menu\\Menu_battery.jpg";
 	MenuItemImages[ITM_BULB] = "images\\Menu\\Menu_Bulb.jpg";
+	MenuItemImages[ITM_BUZ] = "images\\Menu\\Menu_Resistor.jpg";
+	MenuItemImages[ITM_FUSE] = "images\\Menu\\Menu_Resistor.jpg";
 	MenuItemImages[ITM_SWI] = "images\\Menu\\Menu_Resistor.jpg";	//should be changed to actual switch image
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_CABLE] = "images\\Menu\\Menu_Cable.jpg";
@@ -382,6 +387,30 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, bool selected) const
 		ResImage = "Images\\Comp\\Ground_HI.jpg";	//use image of highlighted resistor
 	else
 		ResImage = "Images\\Comp\\Ground.jpg";	//use image of the normal resistor
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+
+void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted resistor
+	else
+		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal resistor
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+
+void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted resistor
+	else
+		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal resistor
 
 	//Draw Resistor at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);

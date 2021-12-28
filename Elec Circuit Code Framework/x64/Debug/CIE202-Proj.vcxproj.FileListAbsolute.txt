@@ -2,3 +2,4 @@ D:\Git_projects\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\
 C:\Users\Mahmoud\Desktop\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
 C:\Users\world\Desktop\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
 C:\Users\Mahmoud\Desktop\New_File\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
+D:\C++ project\New folder (5)\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe

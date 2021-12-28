@@ -3,7 +3,7 @@
 #include "Actions\ActionAddBat.h"
 #include "Actions\ActionAddSwi.h"
 #include "Actions\ActionAddBulb.h"
-#include"Actions\ActionAddGRD.h"
+#include "Actions\ActionAddGRD.h"
 #include "Actions\ActionConnection.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionExit.h"
@@ -11,6 +11,8 @@
 #include "Actions/ActionToSim.h"
 #include "Actions/ActionToDesign.h"
 #include "Actions/ActionAddLabel.h"
+#include "Actions/ActionAddBuzzer.h"
+#include "Actions/ActionAddFuse.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -72,6 +74,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionAddBulb(this);
 			break;
 
+		case ADD_BUZZER:
+			pAct = new ActionAddBuzzer(this);
+			break;
+		case ADD_FUSE:
+			pAct = new ActionAddFuse(this);
+			break;
 
 		case ADD_SWITCH:
 			pAct = new ActionAddSwi(this);
@@ -214,6 +222,10 @@ void ApplicationManager::SetAllFalse() {
 		CompList[i]->SetSelection(false);
 		CompList[i]->Draw(pUI);
 	}
+	for (int i = 0; i < ConnectionCount; i++) {
+		ConnectionList[i]->Set_Selection(false);
+		ConnectionList[i]->Draw(pUI);
+	}
 }
 Component* ApplicationManager::get_The_Selected_Component() {
 	for (int i = 0; i < CompCount; i++) {
@@ -222,10 +234,10 @@ Component* ApplicationManager::get_The_Selected_Component() {
 		}
 	}
 }
-GraphicsInfo* ApplicationManager::get_The_Selected_Connection() {
+Connection* ApplicationManager::get_The_Selected_Connection() {
 	for (int i = 0; i < ConnectionCount; i++) {
 		if (ConnectionList[i]->Get_Selection() == true) {
-			return ConnectionList[i]->Get_The_Data();
+			return ConnectionList[i];
 		}
 	}
 }

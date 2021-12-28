@@ -24,7 +24,14 @@ void ActionAddRes::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();	
 	
-	
+	/*pUI->PrintMsg("Label the resistor: ");
+
+	string Label = pUI->GetSrting();
+	pUI->ClearStatusBar();
+	pUI->PrintMsg("enter the value: ");
+	string Value = pUI->GetSrting();
+	pUI->ClearStatusBar();*/
+
 	GraphicsInfo * pGInfo= new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 	
 	//Calculate the rectangle Corners
@@ -37,6 +44,8 @@ void ActionAddRes::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight/2;
 	 
 	Resistor* pR = new Resistor(pGInfo);
+	/*pR->setLabel(Label);
+	pR->setValue(Value);*/
 	pManager->AddComponent(pR);
 }
 

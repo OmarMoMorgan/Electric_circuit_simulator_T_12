@@ -1,2 +1,33 @@
-﻿  UI.cpp
-  CIE202-Proj.vcxproj -> C:\Users\Mahmoud\Desktop\New_File\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
+﻿  ActionAddBat.cpp
+  ActionAddBulb.cpp
+  ActionAddBuzzer.cpp
+  ActionAddFuse.cpp
+  ActionAddGRD.cpp
+  ActionAddLabel.cpp
+  ActionAddRes.cpp
+  ActionAddSwi.cpp
+  ActionConnection.cpp
+  ActionExit.cpp
+  ActionLoad.cpp
+  ActionSave.cpp
+  ActionSelect.cpp
+  ActionToDesign.cpp
+  ActionToSim.cpp
+  ApplicationManager.cpp
+  Battery.cpp
+  Bulb.cpp
+  Buzzer.cpp
+  Component.cpp
+  Generating Code...
+D:\C++ project\New folder (5)\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\ApplicationManager.cpp(236): warning C4715: 'ApplicationManager::get_The_Selected_Component': not all control paths return a value
+D:\C++ project\New folder (5)\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\ApplicationManager.cpp(243): warning C4715: 'ApplicationManager::get_The_Selected_Connection': not all control paths return a value
+  Compiling...
+  Connection.cpp
+  Fuse.cpp
+  Ground.cpp
+  Resistor.cpp
+  Switch.cpp
+  main.cpp
+  UI.cpp
+  Generating Code...
+  CIE202-Proj.vcxproj -> D:\C++ project\New folder (5)\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe

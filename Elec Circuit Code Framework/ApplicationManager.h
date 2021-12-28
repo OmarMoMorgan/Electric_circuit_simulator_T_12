@@ -50,7 +50,7 @@ public:
 	void SetAllFalse();
 
 	Component* get_The_Selected_Component();
-	GraphicsInfo* get_The_Selected_Connection();
+	Connection* get_The_Selected_Connection();
 	int* getTerminalsOfTheComponent();
 	int* getCenterOfTheComponent();
 
@@ -66,6 +66,7 @@ public:
 	
 	
 	void Change_AppMode(bool x);
+
 };
 
 #endif

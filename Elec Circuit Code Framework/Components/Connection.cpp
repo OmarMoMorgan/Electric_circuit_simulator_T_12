@@ -38,7 +38,7 @@ bool Connection::Get_Selection() {
 }
 void Connection::setLabel(string text)
 {
-	this->m_label;
+	this->m_label = text;
 }
 string Connection::getLabel()
 {

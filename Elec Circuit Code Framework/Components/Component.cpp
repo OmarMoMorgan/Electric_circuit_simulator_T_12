@@ -21,7 +21,7 @@ Component::~Component()
 {}
 void Component::setLabel(string text)
 {
-	this->m_Label;
+	this->m_Label = text;
 }
 string Component::getLabel()
 {
@@ -30,7 +30,7 @@ string Component::getLabel()
 //value
 void Component::setValue(string v)
 {
-	this->value;
+	this->value = v;
 }
 string Component::getvalue()
 {

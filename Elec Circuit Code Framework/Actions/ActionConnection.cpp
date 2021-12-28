@@ -54,12 +54,16 @@ void ActionConnection::Execute()
 
 
 	pManager->SetAllFalse();
+	//Clear Status Bar
 	pUI->ClearStatusBar();
 
-
+	pUI->PrintMsg("Label the connection: ");
+	string Label = pUI->GetSrting();
+	pUI->ClearStatusBar();
 
 	element->set_Graphics_Info(pGInfo); // To set the coordinates to the connection object
 	Connection* pR = new Connection(pGInfo);
+	pR->setLabel(Label);
 	pManager->AddConnection(pR);
 }
 

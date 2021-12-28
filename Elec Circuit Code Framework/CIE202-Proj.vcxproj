@@ -112,6 +112,8 @@
   <ItemGroup>
     <ClCompile Include="Actions\ActionAddBat.cpp" />
     <ClCompile Include="Actions\ActionAddBulb.cpp" />
+    <ClCompile Include="Actions\ActionAddBuzzer.cpp" />
+    <ClCompile Include="Actions\ActionAddFuse.cpp" />
     <ClCompile Include="Actions\ActionAddGRD.cpp" />
     <ClCompile Include="Actions\ActionAddLabel.cpp" />
     <ClCompile Include="Actions\ActionAddRes.cpp" />
@@ -161,8 +163,10 @@
     <ClCompile Include="CMUgraphicsLib\windowinput.cpp" />
     <ClCompile Include="Components\Battery.cpp" />
     <ClCompile Include="Components\Bulb.cpp" />
+    <ClCompile Include="Components\Buzzer.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\Connection.cpp" />
+    <ClCompile Include="Components\Fuse.cpp" />
     <ClCompile Include="Components\Ground.cpp" />
     <ClCompile Include="Components\Resistor.cpp" />
     <ClCompile Include="Components\Switch.cpp" />
@@ -173,6 +177,8 @@
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddBat.h" />
     <ClInclude Include="Actions\ActionAddBulb.h" />
+    <ClInclude Include="Actions\ActionAddBuzzer.h" />
+    <ClInclude Include="Actions\ActionAddFuse.h" />
     <ClInclude Include="Actions\ActionAddGRD.h" />
     <ClInclude Include="Actions\ActionAddLabel.h" />
     <ClInclude Include="Actions\ActionAddRes.h" />
@@ -206,8 +212,10 @@
     <ClInclude Include="CMUgraphicsLib\windowinput.h" />
     <ClInclude Include="Components\Battery.h" />
     <ClInclude Include="Components\Bulb.h" />
+    <ClInclude Include="Components\Buzzer.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\Connection.h" />
+    <ClInclude Include="Components\Fuse.h" />
     <ClInclude Include="Components\Ground.h" />
     <ClInclude Include="Components\Resistor.h" />
     <ClInclude Include="Components\Switch.h" />
