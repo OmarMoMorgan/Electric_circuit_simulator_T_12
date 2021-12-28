@@ -113,7 +113,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 				}
-				cout << ConnectionList[i]->Get_Selection();
 
 
 				//cout << ConnectionList[i]->Get_The_Data()->PointsList[1].x<< " " << ConnectionList[i]->Get_The_Data()->PointsList[1].y << endl;cout << ConnectionList[i]->Get_The_Data()->PointsList[0].x<< " " << ConnectionList[i]->Get_The_Data()->PointsList[0].y << endl;
@@ -122,8 +121,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					ConnectionList[i]->Set_Selection(true);
 					ConnectionList[i]->Draw(pUI);
 					pUI->PrintMsg("The Connection is selected");
-
-					cout << ConnectionList[i]->Get_Selection();
 
 				}
 

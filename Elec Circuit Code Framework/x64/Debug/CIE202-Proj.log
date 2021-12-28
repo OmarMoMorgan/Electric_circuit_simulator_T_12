@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  ActionAddBat.cpp
   ActionAddBulb.cpp
   ActionAddBuzzer.cpp
@@ -31,3 +32,11 @@ D:\C++ project\New folder (5)\Electric_circuit_simulator_T_12\Elec Circuit Code 
   UI.cpp
   Generating Code...
   CIE202-Proj.vcxproj -> D:\C++ project\New folder (5)\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
+=======
+﻿  ActionSelect.cpp
+  ApplicationManager.cpp
+  Generating Code...
+C:\Users\Mahmoud\Desktop\C++_Project\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\ApplicationManager.cpp(221): warning C4715: 'ApplicationManager::get_The_Selected_Component': not all control paths return a value
+C:\Users\Mahmoud\Desktop\C++_Project\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\ApplicationManager.cpp(228): warning C4715: 'ApplicationManager::get_The_Selected_Connection': not all control paths return a value
+  CIE202-Proj.vcxproj -> C:\Users\Mahmoud\Desktop\C++_Project\Electric_circuit_simulator_T_12\Elec Circuit Code Framework\x64\Debug\CIE202-Proj.exe
+>>>>>>> ddd0b009f59b48297b4104a385b71a214efb2921

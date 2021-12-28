@@ -12,7 +12,7 @@ private:
 public:
 	ActionConnection(ApplicationManager* pApp);
 	virtual ~ActionConnection(void);
-	Connection* element;
+	
 	//Execute action (code depends on action type)
 	virtual void Execute();
 

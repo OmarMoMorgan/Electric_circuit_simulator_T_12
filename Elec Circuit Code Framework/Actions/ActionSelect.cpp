@@ -16,7 +16,6 @@ void ActionSelect::Execute()
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("omar is stupiddd");
 
 	//Get Center point of the area where the Comp should be drawn
 	//pUI->GetPointClicked(Cx, Cy);
