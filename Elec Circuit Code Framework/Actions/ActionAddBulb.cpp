@@ -24,6 +24,12 @@ void ActionAddBulb::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 
+	/*pUI->PrintMsg("Label the Bulb: ");
+	string Label = pUI->GetSrting();
+	pUI->ClearStatusBar();
+	pUI->PrintMsg("enter the value: ");
+	string Value = pUI->GetSrting();
+	pUI->ClearStatusBar();*/
 
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
@@ -37,6 +43,8 @@ void ActionAddBulb::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
 	Bulb* pR = new Bulb(pGInfo);
+	/*pR->setLabel(Label);
+	pR->setValue(Value);*/
 	pManager->AddComponent(pR);
 }
 

@@ -189,7 +189,23 @@
     <ClCompile Include="Actions\ActionToDesign.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Actions\ActionDelete.cpp">
+=======
+    <ClCompile Include="Actions\ActionAddBuzzer.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionAddFuse.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Buzzer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Fuse.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionCopy.cpp">
+>>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -319,7 +335,23 @@
     <ClInclude Include="Actions\ActionToDesign.h">
       <Filter>Actions</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Actions\ActionDelete.h">
+=======
+    <ClInclude Include="Actions\ActionAddBuzzer.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddFuse.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Buzzer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Fuse.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionCopy.h">
+>>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

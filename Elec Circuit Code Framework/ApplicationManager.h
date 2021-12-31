@@ -24,6 +24,10 @@ private:
 	UI* pUI; //pointer to the UI
 	int x, y;
 
+	//these are the data neeeded to copy the componenet
+	
+	
+
 public:
 
 
@@ -50,7 +54,7 @@ public:
 	void SetAllFalse();
 
 	Component* get_The_Selected_Component();
-	GraphicsInfo* get_The_Selected_Connection();
+	Connection* get_The_Selected_Connection();
 	int* getTerminalsOfTheComponent();
 	int* getCenterOfTheComponent();
 
@@ -66,6 +70,7 @@ public:
 	
 	
 	void Change_AppMode(bool x);
+<<<<<<< HEAD
 
 	void Delete_Component();
 	void Delete_selected();
@@ -78,6 +83,10 @@ public:
 
 	double Current();
 
+=======
+	void SelectFuntion();
+	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
+>>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
 };
 
 #endif

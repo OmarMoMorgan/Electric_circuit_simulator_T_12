@@ -14,42 +14,42 @@ void ActionAddLab::Execute()
 	pManager->SetAllFalse();
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
+	pUI->PrintMsg("Select the object: ");
+	
 
 
-
-	pUI->PrintMsg("Select the component: ");
-	pManager->ExecuteAction(SELECT);
-	pUI->ClearStatusBar();
-	pUI->PrintMsg("Label the component, then enter the value: ");
-
-	//Get Center point of the area where the Comp should be drawn
-
-	string Label = pUI->GetSrting();
-
-	//Clear Status Bar
-	pUI->ClearStatusBar();
-
-	pManager->get_The_Selected_Component()->setLabel(Label); //// The comp selected
-	//pManager->get_The_Selected_Connection()->
-
-
-	string Value = pUI->GetSrting();
-	pManager->get_The_Selected_Component()->setValue(Value);
-	pUI->ClearLabel(pManager->getCenterOfTheComponent()[0], pManager->getCenterOfTheComponent()[1]);
-
-	pUI->drawtext(pManager->getCenterOfTheComponent()[0], pManager->getCenterOfTheComponent()[1] - 20, Label + ":" + Value);
-
-	pUI->ClearStatusBar();
-
-
+	if (pManager->get_The_Selected_Component())
+	{
+		pManager->ExecuteAction(SELECT);
+		pUI->ClearStatusBar();
+		pUI->PrintMsg("Label the component: ");
+		string Label = pUI->GetSrting();
+		pManager->get_The_Selected_Component()->setLabel(Label);
+		pUI->ClearStatusBar();
+		pUI->PrintMsg("enter the value: ");
+		string Value = pUI->GetSrting();
+		pManager->get_The_Selected_Component()->setValue(Value);
+		pUI->ClearStatusBar();
+		pUI->ClearLabel(pManager->getCenterOfTheComponent()[0], pManager->getCenterOfTheComponent()[1]);
+		pUI->drawtext(pManager->getCenterOfTheComponent()[0], pManager->getCenterOfTheComponent()[1] - 20, Label + ":" + Value);
+		
+	}
+	/*else if(pManager->get_The_Selected_Connection())
+	{
+		pUI->PrintMsg("Label the Connection: ");
+		string Label = pUI->GetSrting();
+		pManager->get_The_Selected_Connection()->setLabel(Label);
+		cout << pManager->get_The_Selected_Connection()->getLabel();
+	}*/
+	
 	pManager->SetAllFalse();
 
 
 
-	pManager->get_The_Selected_Connection()->PointsList[0];
+	
 
 
-	pUI->drawtext(pManager->get_The_Selected_Connection()->PointsList[0].x, pManager->get_The_Selected_Connection()->PointsList[0].y - 20, Label);
+	//pUI->drawtext(pManager->get_The_Selected_Connection()->PointsList[0].x, pManager->get_The_Selected_Connection()->PointsList[0].y - 20, Label);
 
 
 

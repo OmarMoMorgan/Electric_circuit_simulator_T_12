@@ -39,3 +39,6 @@ void Battery::Save(int id , ofstream &MyFile , const string label , int value) {
 //}
 
 // the Code is supposed to be true but we have e
+
+//this is for the copy constructor
+//Battery::Battery(const Battery& old_bat, GraphicsInfo* r_GfxInfo) :Component(old_bat, r_GfxInfo) {}

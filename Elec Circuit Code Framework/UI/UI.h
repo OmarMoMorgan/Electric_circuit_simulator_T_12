@@ -59,10 +59,12 @@ class UI
 		ITM_SIM,   // Switch to simulation mode Button
 		ITM_UNDO,
 		ITM_REDO,
-		ITM_LAB,		//Exit item
+		ITM_LAB,
+		ITM_BUZ,
+		ITM_FUSE,
 		//TODO: Add more items names here
 		ITM_SAVE,
-		ITM_EXIT,
+		ITM_EXIT,			//Exit item
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
 	
 	};
@@ -152,6 +154,10 @@ public:
 
 	//Draws a switch
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+
+	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+
+	void DrawFuse(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
 	// Draws Connection
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;

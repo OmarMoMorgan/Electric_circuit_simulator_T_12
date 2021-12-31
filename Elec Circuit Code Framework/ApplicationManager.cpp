@@ -3,7 +3,7 @@
 #include "Actions\ActionAddBat.h"
 #include "Actions\ActionAddSwi.h"
 #include "Actions\ActionAddBulb.h"
-#include"Actions\ActionAddGRD.h"
+#include "Actions\ActionAddGRD.h"
 #include "Actions\ActionConnection.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionExit.h"
@@ -11,7 +11,12 @@
 #include "Actions/ActionToSim.h"
 #include "Actions/ActionToDesign.h"
 #include "Actions/ActionAddLabel.h"
+<<<<<<< HEAD
 #include "Actions/ActionDelete.h"
+=======
+#include "Actions/ActionAddBuzzer.h"
+#include "Actions/ActionAddFuse.h"
+>>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
 
 ApplicationManager::ApplicationManager()
 {
@@ -28,6 +33,9 @@ ApplicationManager::ApplicationManager()
 
 	//Creates the UI Object & Initialize the UI
 	pUI = new UI;
+
+	//pointer to the data fro copying item this is also under test yet
+	//Item_data_for_copy* TheCopiedData = new Item_data_for_copy();
 }
 ////////////////////////////////////////////////////////////////////
 void ApplicationManager::AddComponent(Component* pComp)
@@ -56,6 +64,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	
 	int flag_1 = 0;
 	int flag_2 = 0;
+	//this is for testing purposes
+	GraphicsInfo* pGInfo = new GraphicsInfo(2);
+	//end of the tesets here
+
 	switch (ActType)
 	{
 		case ADD_RESISTOR:
@@ -73,6 +85,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionAddBulb(this);
 			break;
 
+		case ADD_BUZZER:
+			pAct = new ActionAddBuzzer(this);
+			break;
+		case ADD_FUSE:
+			pAct = new ActionAddFuse(this);
+			break;
 
 		case ADD_SWITCH:
 			pAct = new ActionAddSwi(this);
@@ -174,6 +192,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionLoad(this);
 			break;*/
 
+		//this is not the final thing this is crently being tested
+		case COPY:
+			
+			/*for (int j = 0; j < CompCount; j++) {
+				if (CompList[j]->GetSelection() == true) {
+					Battery* pR = new Battery(&(*CompList[j]) , pGInfo);
+				}
+			}*/
+			break;
+
 		case EXIT:
 			///TODO: create ExitAction here
 			//pAct = new ActionExit(this);
@@ -213,6 +241,10 @@ void ApplicationManager::SetAllFalse() {
 		CompList[i]->SetSelection(false);
 		CompList[i]->Draw(pUI);
 	}
+	for (int i = 0; i < ConnectionCount; i++) {
+		ConnectionList[i]->Set_Selection(false);
+		ConnectionList[i]->Draw(pUI);
+	}
 }
 Component* ApplicationManager::get_The_Selected_Component() {
 	for (int i = 0; i < CompCount; i++) {
@@ -221,6 +253,7 @@ Component* ApplicationManager::get_The_Selected_Component() {
 		}
 	}
 }
+<<<<<<< HEAD
 void ApplicationManager::Delete_selected() {
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] != nullptr) {
@@ -235,9 +268,12 @@ void ApplicationManager::Delete_selected() {
 	}
 }
 GraphicsInfo* ApplicationManager::get_The_Selected_Connection() {
+=======
+Connection* ApplicationManager::get_The_Selected_Connection() {
+>>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
 	for (int i = 0; i < ConnectionCount; i++) {
 		if (ConnectionList[i]->Get_Selection() == true) {
-			return ConnectionList[i]->Get_The_Data();
+			return ConnectionList[i];
 		}
 	}
 }
@@ -363,6 +399,7 @@ void ApplicationManager::Change_AppMode(bool x) {
 
 }
 
+<<<<<<< HEAD
 
 
 bool ApplicationManager::Validation() {
@@ -460,3 +497,19 @@ double ApplicationManager::Current()
 	}
 	return (voltage / resistor);
 }
+=======
+void ApplicationManager::SelectFuntion() {
+	for (int i = 0; i < ConnectionCount; i++) {
+		if (CompList[i]->GetGraphicsInfo()->PointsList[0].x  < x
+			&& CompList[i]->GetGraphicsInfo()->PointsList[1].x > x && CompList[i]->GetGraphicsInfo()->PointsList[0].y < y
+			&& CompList[i]->GetGraphicsInfo()->PointsList[1].y > y) {
+
+			CompList[i]->SetSelection(true);
+			CompList[i]->Draw(pUI);
+			pUI->PrintMsg("the condition is working");
+			//flag = 1;
+		}
+	}
+}
+
+>>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9

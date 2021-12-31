@@ -12,7 +12,8 @@ enum ActionType
 	ADD_BULB,			//Add Bulb
 	ADD_CONNECTION,		//Add Wire Connection
 	ADD_BATTERY,		//Add battery /omar
-
+	ADD_BUZZER,
+	ADD_FUSE,
 	ADD_Label,			//Add Label to a Component, a Connection
 	EDIT_Label,			//Edit Label of a Component, a Connection
 

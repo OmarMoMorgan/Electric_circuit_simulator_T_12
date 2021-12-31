@@ -1,22 +1,22 @@
-#include "ActionAddSwi.h"
+#include "ActionAddFuse.h"
 #include "..\ApplicationManager.h"
 
-ActionAddSwi::ActionAddSwi(ApplicationManager* pApp) :Action(pApp)
+ActionAddFuse::ActionAddFuse(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-ActionAddSwi::~ActionAddSwi(void)
+ActionAddFuse::~ActionAddFuse(void)
 {
 }
 
-void ActionAddSwi::Execute()
+void ActionAddFuse::Execute()
 {
 
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("Adding a new Switch: Click anywhere to add");
+	pUI->PrintMsg("Adding a new Fuse: Click anywhere to add");
 
 	//Get Center point of the area where the Comp should be drawn
 	pUI->GetPointClicked(Cx, Cy);
@@ -24,12 +24,6 @@ void ActionAddSwi::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 
-	/*pUI->PrintMsg("Label the switch: ");
-	string Label = pUI->GetSrting();
-	pUI->ClearStatusBar();
-	pUI->PrintMsg("enter the value: ");
-	string Value = pUI->GetSrting();
-	pUI->ClearStatusBar();*/
 
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
@@ -42,15 +36,13 @@ void ActionAddSwi::Execute()
 	pGInfo->PointsList[1].x = Cx + compWidth / 2;
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
-	Switch* pR = new Switch(pGInfo);
-	/*pR->setLabel(Label);
-	pR->setValue(Value);*/
+	Fuse* pR = new Fuse(pGInfo);
 	pManager->AddComponent(pR);
 }
 
-void ActionAddSwi::Undo()
+void ActionAddFuse::Undo()
 {}
 
-void ActionAddSwi::Redo()
+void ActionAddFuse::Redo()
 {}
 
