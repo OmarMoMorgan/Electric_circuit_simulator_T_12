@@ -37,3 +37,19 @@ string Component::getvalue()
 	return value;
 }
 
+//the implemantion of the copy constructor
+Component::Component(const Component& old_comp , GraphicsInfo* r_GfxInfo) {
+	m_Label = this->m_Label;
+	value = this->value;
+
+	term1_volt = this->term1_volt;
+	term2_volt = this->term2_volt;
+	Connection* term1_connections[MAX_CONNS]; //list of pointers to connections
+	Connection* term2_connections[MAX_CONNS];
+	term1_conn_count = 0;
+	term2_conn_count = 0;
+	m_pGfxInfo = r_GfxInfo;
+	selected_o = this->selected_o;
+
+}
+

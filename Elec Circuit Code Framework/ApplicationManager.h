@@ -24,6 +24,10 @@ private:
 	UI* pUI; //pointer to the UI
 	int x, y;
 
+	//these are the data neeeded to copy the componenet
+	
+	
+
 public:
 
 
@@ -66,7 +70,8 @@ public:
 	
 	
 	void Change_AppMode(bool x);
-
+	void SelectFuntion();
+	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
 };
 
 #endif

@@ -29,6 +29,9 @@ ApplicationManager::ApplicationManager()
 
 	//Creates the UI Object & Initialize the UI
 	pUI = new UI;
+
+	//pointer to the data fro copying item this is also under test yet
+	//Item_data_for_copy* TheCopiedData = new Item_data_for_copy();
 }
 ////////////////////////////////////////////////////////////////////
 void ApplicationManager::AddComponent(Component* pComp)
@@ -57,6 +60,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	
 	int flag_1 = 0;
 	int flag_2 = 0;
+	//this is for testing purposes
+	GraphicsInfo* pGInfo = new GraphicsInfo(2);
+	//end of the tesets here
+
 	switch (ActType)
 	{
 		case ADD_RESISTOR:
@@ -179,6 +186,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		/*case LOAD:
 			pAct = new ActionLoad(this);
 			break;*/
+
+		//this is not the final thing this is crently being tested
+		case COPY:
+			
+			/*for (int j = 0; j < CompCount; j++) {
+				if (CompList[j]->GetSelection() == true) {
+					Battery* pR = new Battery(&(*CompList[j]) , pGInfo);
+				}
+			}*/
+			break;
 
 		case EXIT:
 			///TODO: create ExitAction here
@@ -337,3 +354,18 @@ void ApplicationManager::Change_AppMode(bool x) {
 	pUI->DO(x);
 
 }
+
+void ApplicationManager::SelectFuntion() {
+	for (int i = 0; i < ConnectionCount; i++) {
+		if (CompList[i]->GetGraphicsInfo()->PointsList[0].x  < x
+			&& CompList[i]->GetGraphicsInfo()->PointsList[1].x > x && CompList[i]->GetGraphicsInfo()->PointsList[0].y < y
+			&& CompList[i]->GetGraphicsInfo()->PointsList[1].y > y) {
+
+			CompList[i]->SetSelection(true);
+			CompList[i]->Draw(pUI);
+			pUI->PrintMsg("the condition is working");
+			//flag = 1;
+		}
+	}
+}
+

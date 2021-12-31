@@ -201,6 +201,9 @@
     <ClCompile Include="Components\Fuse.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionCopy.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -339,6 +342,9 @@
     </ClInclude>
     <ClInclude Include="Components\Fuse.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionCopy.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

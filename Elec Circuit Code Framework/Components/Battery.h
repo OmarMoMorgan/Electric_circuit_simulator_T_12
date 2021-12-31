@@ -10,4 +10,6 @@ public:
 	virtual void Draw(UI*);	//Draws the resistor
 	virtual void Save(int id,ofstream &MyFile , const string label , int value);
 	//virtual void Load(int id, ifstream& MyFile);
+	//copy constructor still testing if this will work or not
+	//Battery(const Battery&, GraphicsInfo* r_GfxInfo);
 };

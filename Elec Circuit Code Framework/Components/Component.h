@@ -74,6 +74,9 @@ public:
 	
 	//Destructor must be virtual
 	virtual ~Component();
+
+	//test for a new copy constructor to see if that will fix stuff or not
+	Component(const Component& , GraphicsInfo* r_GfxInfo);
 };
 
 #endif
