@@ -26,4 +26,8 @@ public:
 	void setLabel(string text);
 	string getLabel();
 
+
+
+	int* terminals_getter();
+
 };

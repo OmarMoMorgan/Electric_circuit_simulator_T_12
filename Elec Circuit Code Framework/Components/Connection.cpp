@@ -44,4 +44,15 @@ string Connection::getLabel()
 {
 	return m_label;
 }
+int* Connection::terminals_getter() {
+	int* Co = new int[4];
+	Co[0] = pGfxInfo->PointsList[0].x;
+	Co[1] = pGfxInfo->PointsList[0].y;
+	Co[2] = pGfxInfo->PointsList[1].x;
+	Co[3] = pGfxInfo->PointsList[1].y;
 
+	return Co;
+
+
+
+}

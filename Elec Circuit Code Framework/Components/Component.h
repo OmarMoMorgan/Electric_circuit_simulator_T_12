@@ -15,6 +15,7 @@ class Component
 private:
 	string m_Label;
 	string value;
+	
 protected:
 	//Each component has two ending terminals (term1, term2)
 	double term1_volt, term2_volt;	//voltage at terminals 1&2
@@ -37,7 +38,7 @@ public:
 	//void setTerm2Volt(double v);		//sets the voltage at terminal2
 	//double getTerm1Volt();				//returns the voltage at terminal1
 	//double getTerm2Volt();				//returns the voltage at terminal2
-
+	
 	virtual void Operate() = 0;	//Calculates the output voltage according to the inputs
 	virtual void Draw(UI* ) = 0;	//for each component to Draw itself
 	
@@ -71,6 +72,7 @@ public:
 	void setValue(string v);
 	string getvalue();
 	Component();	
+	
 	
 	//Destructor must be virtual
 	virtual ~Component();

@@ -66,6 +66,18 @@ public:
 	
 	
 	void Change_AppMode(bool x);
+
+	void Delete_Component();
+	void Delete_selected();
+
+
+	
+	void Update_CompList();
+	
+	bool Validation();
+
+	double Current();
+
 };
 
 #endif

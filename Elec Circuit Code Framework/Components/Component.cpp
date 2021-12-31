@@ -18,7 +18,13 @@ GraphicsInfo* Component::GetGraphicsInfo() {
 }
 
 Component::~Component()
-{}
+{
+	m_pGfxInfo = nullptr;
+	term1_volt = term2_volt = 0;
+	term1_conn_count = term2_conn_count = 0;
+	delete m_pGfxInfo;
+
+}
 void Component::setLabel(string text)
 {
 	this->m_Label;

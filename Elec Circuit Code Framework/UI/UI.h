@@ -158,6 +158,14 @@ public:
 	
 	void PrintMsg(string msg) const;	//Print a message on Status bar
 
+
+	// For delete elements
+
+	void DrawWhite_component(const int* r_GfxInfo) const;
+
+
+
+
 	~UI();
 };
 

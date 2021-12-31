@@ -1,6 +1,7 @@
 #pragma once
 
 #include "action.h"
+
 //#include "..\Components\Battery.h"
 
 //Class responsible for adding a new resistor action
@@ -20,6 +21,7 @@ public:
 
 	virtual void Undo();
 	virtual void Redo();
+	void Select_Connection();
 
 
 };

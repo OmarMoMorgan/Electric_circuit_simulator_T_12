@@ -401,6 +401,17 @@ void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//TODO: Add code to draw connection
 }
 
+void UI::DrawWhite_component(const int* r_GfxInfo) const 
+{
+	string ResImage;
+	ResImage = "Images\\Comp\\Whiting.jpg";
+	//pWind->SetPen(RED, 5);
+	pWind->SetBrush(RED);
+	//pWind->DrawImage(ResImage, r_GfxInfo[0], r_GfxInfo[1], COMP_WIDTH, COMP_HEIGHT);
+	
+	pWind->DrawRectangle(r_GfxInfo[0] - COMP_WIDTH/2, r_GfxInfo[1] - COMP_HEIGHT/2, r_GfxInfo[2] + COMP_WIDTH/2, r_GfxInfo[3] +COMP_HEIGHT/2);
+}
+
 
 UI::~UI()
 {

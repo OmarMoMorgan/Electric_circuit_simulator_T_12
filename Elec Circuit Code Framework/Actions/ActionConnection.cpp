@@ -60,6 +60,8 @@ void ActionConnection::Execute()
 	
 	Connection* pR = new Connection(pGInfo,cmpt1,cmpt2);
 	pManager->AddConnection(pR);
+	cmpt1,cmpt2 = nullptr;
+
 }
 
 void ActionConnection::Undo()

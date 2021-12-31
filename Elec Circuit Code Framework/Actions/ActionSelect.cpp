@@ -21,7 +21,7 @@ void ActionSelect::Execute()
 	//pUI->GetPointClicked(Cx, Cy);
 
 	//Clear Status Bar
-	pUI->ClearStatusBar();
+	/*pUI->ClearStatusBar();
 	
 	int x;
 	int y;
@@ -43,7 +43,7 @@ void ActionSelect::Execute()
 				break;
 			}
 		}
-	}
+	}*/
 	/*if (flag == 0) {
 		for (int i = 0; i < pManager->GetCompCount(); i++) {
 			pManager->GetListComponents()[i].SetSelection(false);
