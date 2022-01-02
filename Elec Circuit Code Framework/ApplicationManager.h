@@ -70,7 +70,7 @@ public:
 	
 	
 	void Change_AppMode(bool x);
-<<<<<<< HEAD
+
 
 	void Delete_Component();
 	void Delete_selected();
@@ -83,10 +83,10 @@ public:
 
 	double Current();
 
-=======
+
 	void SelectFuntion();
 	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
->>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
+
 };
 
 #endif

@@ -11,12 +11,12 @@
 #include "Actions/ActionToSim.h"
 #include "Actions/ActionToDesign.h"
 #include "Actions/ActionAddLabel.h"
-<<<<<<< HEAD
+
 #include "Actions/ActionDelete.h"
-=======
+
 #include "Actions/ActionAddBuzzer.h"
 #include "Actions/ActionAddFuse.h"
->>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
+
 
 ApplicationManager::ApplicationManager()
 {
@@ -253,7 +253,7 @@ Component* ApplicationManager::get_The_Selected_Component() {
 		}
 	}
 }
-<<<<<<< HEAD
+
 void ApplicationManager::Delete_selected() {
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] != nullptr) {
@@ -267,10 +267,10 @@ void ApplicationManager::Delete_selected() {
 		
 	}
 }
-GraphicsInfo* ApplicationManager::get_The_Selected_Connection() {
-=======
+
+
 Connection* ApplicationManager::get_The_Selected_Connection() {
->>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
+
 	for (int i = 0; i < ConnectionCount; i++) {
 		if (ConnectionList[i]->Get_Selection() == true) {
 			return ConnectionList[i];
@@ -399,7 +399,7 @@ void ApplicationManager::Change_AppMode(bool x) {
 
 }
 
-<<<<<<< HEAD
+
 
 
 bool ApplicationManager::Validation() {
@@ -497,7 +497,7 @@ double ApplicationManager::Current()
 	}
 	return (voltage / resistor);
 }
-=======
+
 void ApplicationManager::SelectFuntion() {
 	for (int i = 0; i < ConnectionCount; i++) {
 		if (CompList[i]->GetGraphicsInfo()->PointsList[0].x  < x
@@ -512,4 +512,4 @@ void ApplicationManager::SelectFuntion() {
 	}
 }
 
->>>>>>> 1f25912df79398ba0f5c37269512b2deed775ca9
+
