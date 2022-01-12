@@ -69,6 +69,9 @@
     <ClCompile Include="Components\Switch.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="Actions\ActionCurrent.cpp" />
+    <ClCompile Include="Actions\ActionVoltage.cpp" />
+    <ClCompile Include="Actions\ActionOnOff.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\Action.h" />
@@ -124,6 +127,9 @@
     <ClInclude Include="Components\Switch.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="UI\UI.h" />
+    <ClInclude Include="Actions\ActionCurrent.h" />
+    <ClInclude Include="Actions\ActionVoltage.h" />
+    <ClInclude Include="Actions\ActionOnOff.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt" />

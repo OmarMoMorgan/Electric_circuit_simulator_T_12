@@ -56,9 +56,12 @@ void ActionConnection::Execute()
 	pManager->SetAllFalse();
 	pUI->ClearStatusBar();
 
-
+	pUI->PrintMsg("Label the connection: ");
+	string Label = pUI->GetSrting();
+	pUI->ClearStatusBar();
 
 	Connection* pR = new Connection(pGInfo, cmpt1, cmpt2);
+	pR->setLabel(Label);
 	pManager->AddConnection(pR);
 	cmpt1,cmpt2 = nullptr;
 

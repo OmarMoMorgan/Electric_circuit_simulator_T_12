@@ -76,6 +76,8 @@ class UI
 		//Note: Items are ordered here as they appear in menu
 		ITM_CIRC_SIM,	//Circuit Simulate menu item
 		ITM_Switch_ON_OFF,
+		ITM_CURRENT,
+		ITM_VOLT,
 		ITM_EXIT_1,
 		//TODO:Add more items names here
 
@@ -154,7 +156,7 @@ public:
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected ) const;
 
 	//Draws a switch
-	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false, int CASE = 0) const;
 
 	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 

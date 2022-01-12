@@ -176,7 +176,9 @@ ActionType UI::GetUserAction() const
 			{
 			case ITM_CIRC_SIM:	return DSN_MODE;
 				//case ITM_Switch_ON_OFF: return ADD_SWITCH;
-
+			case ITM_CURRENT:		return ADD_CURRENT;
+			case ITM_VOLT:			return ADD_VOLT;
+			case ITM_Switch_ON_OFF: return OnOff_Switch;
 			case ITM_EXIT_1:	return EXIT;
 
 
@@ -313,8 +315,9 @@ void UI::CreateSimulationToolBar()
 	string MenuItemImages[ITM_SIM_CNT];
 	MenuItemImages[ITM_CIRC_SIM] = "images\\Menu\\Menu_Switch_To_Design.jpeg";
 	MenuItemImages[ITM_Switch_ON_OFF] = "images\\Menu\\Menu_Switch.jpg";
-
+	MenuItemImages[ITM_CURRENT] = "images\\Menu\\Menu_Ammeter.jpg";
 	MenuItemImages[ITM_EXIT_1] = "images\\Menu\\Menu_Exit.jpg";
+	MenuItemImages[ITM_VOLT] = "images\\Menu\\Menu_Voltmeter.jpg";
 
 	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
 	//Draw menu item one image at a time
@@ -380,13 +383,24 @@ void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected) const
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 
-void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected, int CASE) const
 {
 	string ResImage;
-	if (selected)
-		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted Switch //should be changed to actual switch image
-	else
-		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal Switch //should be changed to actual switch image
+	if (CASE == 0)
+	{
+		if (selected)
+			ResImage = "Images\\Comp\\Switch_HI.jpg";	//use image of highlighted Switch //should be changed to actual switch image
+		else
+			ResImage = "Images\\Comp\\Switch.jpg";	//use image of the normal Switch //should be changed to actual switch image
+
+	}
+	else if (CASE == 1)
+	{
+		if (selected)
+			ResImage = "Images\\Comp\\Switch_HI_Closed.jpg";
+		else
+			ResImage = "Images\\Comp\\Switch_Closed.jpg";
+	}
 
 	//Draw Switch at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);

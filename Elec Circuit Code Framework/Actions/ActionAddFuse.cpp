@@ -23,6 +23,11 @@ void ActionAddFuse::Execute()
 
 	//Clear Status Bar
 	pUI->ClearStatusBar();
+	// label
+	pUI->PrintMsg("Label the Fuse: ");
+	string Label = pUI->GetSrting();
+	pUI->ClearStatusBar();
+
 
 
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
@@ -37,6 +42,7 @@ void ActionAddFuse::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
 	Fuse* pR = new Fuse(pGInfo);
+	pR->setLabel(Label);
 	pManager->AddComponent(pR);
 }
 

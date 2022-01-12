@@ -11,10 +11,10 @@
 #include "Actions/ActionToSim.h"
 #include "Actions/ActionToDesign.h"
 #include "Actions/ActionAddLabel.h"
-
+#include "Actions/ActionCurrent.h"
 #include "Actions/ActionDelete.h"
 #include "Actions/ActionADDMOD.h"
-
+#include "Actions/ActionVoltage.h"
 #include "Actions/ActionAddBuzzer.h"
 #include "Actions/ActionAddFuse.h"
 #include "Actions/ActionCopy.h"
@@ -562,11 +562,7 @@ bool ApplicationManager::Validation() {
 
 		}
 	}
-	if (num_of_validtion == CompCount && count == 1)
-		return true;
-	
-		
-	if(count == 0) {
+	if (count == 0) {
 		pUI->PrintMsg("There is no Ground in the circuit. ");
 		return false;
 	}
@@ -574,6 +570,16 @@ bool ApplicationManager::Validation() {
 		pUI->PrintMsg("There is more than one Ground in the circuit. ");
 		return false;
 	}
+
+	if (num_of_validtion == CompCount && count == 1)
+	{
+		CheckFuse();
+		return true;
+	}
+		
+	
+		
+	
 		
 		
 
@@ -787,4 +793,71 @@ void ApplicationManager::Update_CompList() {
 
 
 
+}
+Component* ApplicationManager::HasResistance(Component* pResistor)
+{
+	const Resistor* ptrR = dynamic_cast<const Resistor*>(pResistor);
+	const Bulb* ptrB = dynamic_cast<const Bulb*>(pResistor);
+	const Buzzer* ptrZ = dynamic_cast<const Buzzer*>(pResistor);
+	if (ptrR || ptrB || ptrZ)
+		return pResistor;
+	else
+		return nullptr;
+}
+double ApplicationManager::Current()
+{ 
+	double resistor = 0;
+	double voltage = 0;
+	for (int i = 0; i < CompCount; i++) {
+		const Battery* ptrBAT = dynamic_cast<const Battery*>(CompList[i]);
+		if (HasResistance(CompList[i]) != nullptr)
+			resistor += (CompList[i]->getvalue());
+		if (ptrBAT)
+			voltage += (CompList[i]->getvalue());
+	}
+	return (voltage / resistor);
+}
+double ApplicationManager::Voltage(Component* pcomp)
+{
+	Battery* ptrBAT = dynamic_cast<Battery*>(pcomp);
+	if (HasResistance(pcomp) != nullptr)
+		return (Current() * pcomp->getvalue());
+	else if (ptrBAT != nullptr)
+		return ptrBAT->getvalue();
+	else
+		return(0);
+}
+
+
+bool ApplicationManager::OnOff(Component* pcomp)
+{
+	Switch* ps = dynamic_cast<Switch*>(pcomp);
+	if (ps != nullptr)
+	{
+		if (ps->getvalue() == 0)
+		{
+			ps->setValue("1");
+			
+			return false;
+		}
+		else if (ps->getvalue() == 1)
+		{
+			ps->setValue("0");
+			return true;
+		}
+	}
+}
+void ApplicationManager::CheckFuse()
+{
+	if (Current() > 50)
+	{
+		for (int i = 0; i < CompCount; i++) {
+			Fuse* pf = dynamic_cast<Fuse*>(CompList[i]);
+			Switch* ps = dynamic_cast<Switch*>(CompList[i]);
+			if (pf != nullptr)
+				pf->setValue("1");
+			if (ps != nullptr)
+				pf->setValue("0");
+		}
+	}
 }

@@ -24,12 +24,16 @@ void ActionAddBat::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 
-	/*pUI->PrintMsg("Label the battery: ");
+	// Label
+
+	pUI->PrintMsg("Label the Battery: ");
 	string Label = pUI->GetSrting();
 	pUI->ClearStatusBar();
-	pUI->PrintMsg("enter the value: ");
+	pUI->PrintMsg("Enter the value of its voltage: ");
 	string Value = pUI->GetSrting();
-	pUI->ClearStatusBar();*/
+	pUI->ClearStatusBar();
+
+
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
 	//Calculate the rectangle Corners
@@ -42,8 +46,8 @@ void ActionAddBat::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
 	Battery* pR = new Battery(pGInfo);
-	/*pR->setValue(Value);
-	pR->setLabel(Label);*/
+	pR->setValue(Value);
+	pR->setLabel(Label);
 	pManager->AddComponent(pR);
 }
 

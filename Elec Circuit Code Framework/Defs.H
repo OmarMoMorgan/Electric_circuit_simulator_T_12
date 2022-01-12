@@ -4,7 +4,7 @@
 //This header file contains some defenitions to be used all over the application
 
 //All possible actions
-enum ActionType 
+enum ActionType
 {
 	ADD_RESISTOR,		//Add a resistor
 	ADD_GROUND,          // Add a ground
@@ -14,11 +14,13 @@ enum ActionType
 	ADD_BATTERY,		//Add battery /omar
 	ADD_BUZZER,
 	ADD_FUSE,
+	ADD_MODULE,
 	ADD_Label,			//Add Label to a Component, a Connection
 	EDIT_Label,			//Edit Label of a Component, a Connection
-	ADD_MODULE,
-	Change_Switch,		//Change Switch Status in Simulation Mode
 
+	OnOff_Switch,		//Change Switch Status in Simulation Mode
+	ADD_CURRENT,
+	ADD_VOLT,
 	SELECT,		//Select a Component, a Connection
 	DEL,		//Delete a Component, a Connection
 	MOVE,		//Move a Component, a Connection

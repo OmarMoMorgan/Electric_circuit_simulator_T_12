@@ -24,12 +24,9 @@ void ActionAddSwi::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 
-	/*pUI->PrintMsg("Label the switch: ");
+	pUI->PrintMsg("Label the switch: ");
 	string Label = pUI->GetSrting();
 	pUI->ClearStatusBar();
-	pUI->PrintMsg("enter the value: ");
-	string Value = pUI->GetSrting();
-	pUI->ClearStatusBar();*/
 
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
@@ -43,8 +40,7 @@ void ActionAddSwi::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
 	Switch* pR = new Switch(pGInfo);
-	/*pR->setLabel(Label);
-	pR->setValue(Value);*/
+	pR->setLabel(Label);
 	pManager->AddComponent(pR);
 }
 

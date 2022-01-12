@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -120,16 +120,19 @@
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwi.cpp" />
     <ClCompile Include="Actions\ActionConnection.cpp" />
+    <ClCompile Include="Actions\ActionCurrent.cpp" />
     <ClCompile Include="Actions\ActionCut.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
     <ClCompile Include="Actions\ActionCopy.cpp" />
     <ClCompile Include="Actions\ActionExit.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
+    <ClCompile Include="Actions\ActionOnOff.cpp" />
     <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
     <ClCompile Include="Actions\ActionToDesign.cpp" />
     <ClCompile Include="Actions\ActionToSim.cpp" />
+    <ClCompile Include="Actions\ActionVoltage.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -191,16 +194,19 @@
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwi.h" />
     <ClInclude Include="Actions\ActionConnection.h" />
+    <ClInclude Include="Actions\ActionCurrent.h" />
     <ClInclude Include="Actions\ActionCut.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
     <ClInclude Include="Actions\ActionCopy.h" />
     <ClInclude Include="Actions\ActionExit.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
+    <ClInclude Include="Actions\ActionOnOff.h" />
     <ClInclude Include="Actions\ActionPaste.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
     <ClInclude Include="Actions\ActionToDesign.h" />
     <ClInclude Include="Actions\ActionToSim.h" />
+    <ClInclude Include="Actions\ActionVoltage.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

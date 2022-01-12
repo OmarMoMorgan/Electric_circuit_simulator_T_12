@@ -24,6 +24,13 @@ void ActionAddBuzzer::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 
+	pUI->PrintMsg("Label the Buzzer: ");
+	string Label = pUI->GetSrting();
+	pUI->ClearStatusBar();
+	pUI->PrintMsg("Enter the value of its resistance: ");
+	string Value = pUI->GetSrting();
+	pUI->ClearStatusBar();
+
 
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
@@ -37,6 +44,8 @@ void ActionAddBuzzer::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
 	Buzzer* pR = new Buzzer(pGInfo);
+	pR->setValue(Value);
+	pR->setLabel(Label);
 	pManager->AddComponent(pR);
 }
 

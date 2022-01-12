@@ -88,7 +88,6 @@ public:
 	
 	bool Validation();
 
-	double Current();
 
 
 	//void SelectFuntion();
@@ -101,6 +100,12 @@ public:
 	void ModifyAfterCreate();
 	int casesForPaste = 1;
 	int GetTellType();
+
+	bool OnOff(Component*);
+	double Current();
+	double Voltage(Component*);
+	Component* HasResistance(Component* pcomp);
+	void CheckFuse();
 };
 
 #endif
