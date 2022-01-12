@@ -91,7 +91,7 @@ public:
 	double Current();
 
 
-	void SelectFuntion();
+	//void SelectFuntion();
 	void SetCopiedData(Component *ItmabtCopy);
 	//CopyingData GetCopiedData();
 
