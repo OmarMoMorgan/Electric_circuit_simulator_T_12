@@ -84,7 +84,7 @@ public:
 	double Current();
 
 
-	void SelectFuntion();
+	bool SelectFuntion();
 	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
 
 };
