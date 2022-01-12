@@ -262,13 +262,13 @@ Component* ApplicationManager::get_The_Selected_Component() {
 	}
 }
 
-void ApplicationManager::Delete_selected() {
-	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i]->GetSelection() == true) {
-			 CompList[i] = nullptr;
-		}
-	}
-}
+//void ApplicationManager::Delete_selected() {
+//	for (int i = 0; i < CompCount; i++) {
+//		if (CompList[i]->GetSelection() == true) {
+//			 CompList[i] = nullptr;
+//		}
+//	}
+//}
 
 
 Connection* ApplicationManager::get_The_Selected_Connection() {
@@ -304,22 +304,22 @@ UI* ApplicationManager::GetUI()
 {
 	return pUI;
 }
-void ApplicationManager::Delete_Component() {
-	/*int* t = new int[4];
-	t[0] = getCenterOfTheComponent()[0];
-	t[1] = getCenterOfTheComponent()[1];
-	t[2] = getCenterOfTheComponent()[2];
-	t[3] = getCenterOfTheComponent()[3];*/
-	//get_The_Selected_Component()->GetGraphicsInfo() = nullptr;
-	//get_The_Selected_Component();
-	Delete_selected();
-	Update_CompList();
-
-	//UpdateInterface();
-	//pUI->DrawWhite_component(t);
-	
-	
-}
+//void ApplicationManager::Delete_Component() {
+//	/*int* t = new int[4];
+//	t[0] = getCenterOfTheComponent()[0];
+//	t[1] = getCenterOfTheComponent()[1];
+//	t[2] = getCenterOfTheComponent()[2];
+//	t[3] = getCenterOfTheComponent()[3];*/
+//	//get_The_Selected_Component()->GetGraphicsInfo() = nullptr;
+//	//get_The_Selected_Component();
+//	Delete_selected();
+//	Update_CompList();
+//
+//	//UpdateInterface();
+//	//pUI->DrawWhite_component(t);
+//	
+//	
+//}
 
 ////////////////////////////////////////////////////////////////////
 
@@ -580,36 +580,36 @@ bool ApplicationManager::Validation() {
 	
 
 }
-void ApplicationManager::Update_CompList() {
-	Component* NewList[200];
-	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i] != nullptr) {
-			
-			NewList[i] = CompList[i];
-			NewList[i]->SetGraphicsInfo(CompList[i]->GetGraphicsInfo()) ;
-		}	
-	}
-	/*for (int i = 0; i < CompCount; i++) {
-		CompList[i] = nullptr;
-		delete CompList[i];
-
-	}*/
-	
-	for (int i = 0; i < CompCount; i++) {
-		CompList[i] = NewList[i];
-		CompList[i]->SetGraphicsInfo(NewList[i]->GetGraphicsInfo());
-	}
-
-	/*for (int i = 0; i < CompCount; i++) {
-		NewList[i] = nullptr;
-		delete NewList[i];
-
-	}
-	delete[] NewList;*/
-
-	
-
-}
+//void ApplicationManager::Update_CompList() {
+//	Component* NewList[200];
+//	for (int i = 0; i < CompCount; i++) {
+//		if (CompList[i] != nullptr) {
+//			
+//			NewList[i] = CompList[i];
+//			NewList[i]->SetGraphicsInfo(CompList[i]->GetGraphicsInfo()) ;
+//		}	
+//	}
+//	/*for (int i = 0; i < CompCount; i++) {
+//		CompList[i] = nullptr;
+//		delete CompList[i];
+//
+//	}*/
+//	
+//	for (int i = 0; i < CompCount; i++) {
+//		CompList[i] = NewList[i];
+//		CompList[i]->SetGraphicsInfo(NewList[i]->GetGraphicsInfo());
+//	}
+//
+//	/*for (int i = 0; i < CompCount; i++) {
+//		NewList[i] = nullptr;
+//		delete NewList[i];
+//
+//	}
+//	delete[] NewList;*/
+//
+//	
+//
+//}
 
 //double ApplicationManager::Current()
 //{
@@ -708,4 +708,83 @@ void ApplicationManager::ModifyAfterCreate() {
 
 int ApplicationManager::GetTellType() {
 	return TheOnlyCopiedData.TellType;
+}
+void ApplicationManager::Delete_selected() {
+
+	/*for (int j = 0; j < ConnectionCount; j++) {
+		if (get_The_Selected_Component() == ConnectionList[j]->Get_First_Component()) {
+			ConnectionList[j] = nullptr;
+			ConnectionCount--;
+		}
+	}
+	for (int j = 0; j < ConnectionCount; j++) {
+		if (get_The_Selected_Component() == ConnectionList[j]->Get_Second_Component()) {
+			ConnectionList[j] = nullptr;
+			ConnectionCount--;
+		}
+	}*/
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i] != nullptr) {
+			if (CompList[i]->GetSelection() == true) {
+				CompList[i] = nullptr;
+				CompCount--;
+			}
+		}
+	}
+}
+void ApplicationManager::Delete_Component() {
+	
+	Delete_selected();
+	Update_CompList();
+	pUI->ClearDrawingArea();
+
+	
+	//pUI->DrawWhite_component(t);
+	
+	
+}
+void ApplicationManager::Update_CompList() {
+	Component* NewList[200];
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i] != nullptr) {
+			NewList[i] = CompList[i];
+		}
+	}
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i] = nullptr;
+
+
+	}
+
+
+	for (int i = 0; i < 200; i++) {
+		CompList[i] = NewList[i];
+	}
+
+	Connection* NewList_1[300];
+	for (int i = 0; i < ConnectionCount; i++) {
+		if (ConnectionList[i] != nullptr) {
+			NewList_1[i] = ConnectionList[i];
+		}
+	}
+	for (int i = 0; i < ConnectionCount; i++) {
+		ConnectionList[i] = nullptr;
+
+
+	}
+
+
+	for (int i = 0; i < 300; i++) {
+		ConnectionList[i] = NewList_1[i];
+	}
+
+	/*for (int i = 0; i < CompCount; i++) {
+		NewList[i] = nullptr;
+		delete NewList[i];
+
+	}
+	delete[] NewList;*/
+
+
+
 }
