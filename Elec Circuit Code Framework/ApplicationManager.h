@@ -95,6 +95,7 @@ public:
 	void SetCopiedData(Component *ItmabtCopy);
 	//CopyingData GetCopiedData();
 
+	bool SelectFuntion();
 	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
 	void CheckCompType();
 	void ModifyAfterCreate();

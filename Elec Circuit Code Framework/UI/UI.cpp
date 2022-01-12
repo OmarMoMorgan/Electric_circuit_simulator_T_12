@@ -143,6 +143,7 @@ ActionType UI::GetUserAction() const
 			case ITM_PASTE:  return PASTE;
 			case ITM_DELETE: return DEL;
 			case ITM_SAVE:	 return SAVE;
+			case ITM_MODULE: return ADD_MODULE;
 			
 
 			case ITM_EXIT:	return EXIT;
@@ -284,7 +285,7 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_DELETE] = "images\\Menu\\Menu_Delete.jpg";
 	MenuItemImages[ITM_UNDO] = "images\\Menu\\Menu_Undo.jpg";
 	MenuItemImages[ITM_REDO] = "images\\Menu\\Menu_Redo.jpg";
-
+	MenuItemImages[ITM_MODULE] = "images\\Menu\\Menu_Module.jpg";
 	MenuItemImages[ITM_LAB] = "images\\Menu\\Menu_Label.jpeg";
 
 	MenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_Exit.jpg";
@@ -342,7 +343,17 @@ void UI::DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected) const
 	//Draw Resistor at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
+void UI::DrawMOD(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string ResImage;
+	if (selected)
+		ResImage = "Images\\Comp\\Module_1_H.jpg";	//use image of highlighted MOD
+	else
+		ResImage = "Images\\Comp\\Module_1.jpg";	//use image of the normal MOD
 
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
 void UI::DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
 	string ResImage;

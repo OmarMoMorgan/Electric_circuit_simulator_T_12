@@ -16,6 +16,9 @@ Component::Component()
 GraphicsInfo* Component::GetGraphicsInfo() {
 	return m_pGfxInfo;
 }
+void Component::SetGraphicsInfo(GraphicsInfo* x) {
+	this->m_pGfxInfo = x;
+}
 
 Component::~Component()
 {

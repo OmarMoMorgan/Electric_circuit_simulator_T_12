@@ -22,8 +22,11 @@ void ActionToSim::Execute()
 
 	//Clear Status Bar
 	pUI->ClearStatusBar();
-	if (pManager->Validation() == true)
+	if (pManager->Validation() == true) {
 		pManager->Change_AppMode(false);
+		pManager->SetAllFalse();
+	}
+		
 	
 
 

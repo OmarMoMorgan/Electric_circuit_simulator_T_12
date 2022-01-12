@@ -52,7 +52,4 @@ int* Connection::terminals_getter() {
 	Co[3] = pGfxInfo->PointsList[1].y;
 
 	return Co;
-
-
-
 }

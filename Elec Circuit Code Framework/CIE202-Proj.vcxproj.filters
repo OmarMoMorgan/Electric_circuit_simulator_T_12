@@ -63,10 +63,11 @@
     <ClCompile Include="Components\Ground.cpp" />
     <ClCompile Include="Components\Resistor.cpp" />
     <ClCompile Include="Components\Switch.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionCut.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="Actions\ActionADDMOD.cpp" />
     <ClCompile Include="Components\Module.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +120,7 @@
     <ClInclude Include="Components\Switch.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="UI\UI.h" />
-    <ClInclude Include="Actions\ActionPaste.h" />
-    <ClInclude Include="Actions\ActionCut.h" />
+    <ClInclude Include="Actions\ActionADDMOD.h" />
     <ClInclude Include="Components\Module.h" />
   </ItemGroup>
   <ItemGroup>

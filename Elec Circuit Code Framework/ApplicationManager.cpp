@@ -13,6 +13,7 @@
 #include "Actions/ActionAddLabel.h"
 
 #include "Actions/ActionDelete.h"
+#include "Actions/ActionADDMOD.h"
 
 #include "Actions/ActionAddBuzzer.h"
 #include "Actions/ActionAddFuse.h"
@@ -206,7 +207,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PASTE:
 			pAct = new ActionPaste(this);
 			break;
-
+		case ADD_MODULE:
+			pAct = new ActionADDMOD(this);
+			break;
 		case EXIT:
 			///TODO: create ExitAction here
 			//pAct = new ActionExit(this);
@@ -261,15 +264,9 @@ Component* ApplicationManager::get_The_Selected_Component() {
 
 void ApplicationManager::Delete_selected() {
 	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i] != nullptr) {
-			if (CompList[i]->GetSelection() == true) {
-				CompList[i]->SetSelection(false);
-				CompList[i]->~Component();
-				CompList[i] = nullptr;
-				delete CompList[i];
-			}
+		if (CompList[i]->GetSelection() == true) {
+			 CompList[i] = nullptr;
 		}
-		
 	}
 }
 
@@ -308,14 +305,18 @@ UI* ApplicationManager::GetUI()
 	return pUI;
 }
 void ApplicationManager::Delete_Component() {
-	int* t = new int[4];
+	/*int* t = new int[4];
 	t[0] = getCenterOfTheComponent()[0];
 	t[1] = getCenterOfTheComponent()[1];
 	t[2] = getCenterOfTheComponent()[2];
-	t[3] = getCenterOfTheComponent()[3];
+	t[3] = getCenterOfTheComponent()[3];*/
+	//get_The_Selected_Component()->GetGraphicsInfo() = nullptr;
+	//get_The_Selected_Component();
 	Delete_selected();
 	Update_CompList();
-	pUI->DrawWhite_component(t);
+
+	//UpdateInterface();
+	//pUI->DrawWhite_component(t);
 	
 	
 }
@@ -442,7 +443,12 @@ void ApplicationManager::Load(ifstream& MYFile) {
 /////////////////////////////////////////////////////////////////////
 void ApplicationManager::Exit() {	
 	for (int i = 0; i < CompCount; i++) {
-		delete CompList[i];
+		if(CompList[i] != nullptr)
+			delete CompList[i];
+	}
+	for (int i = 0; i < ConnectionCount; i++) {
+		if (ConnectionList[i] != nullptr)
+			delete ConnectionList[i];
 	}
 }
 /////////////////////////////////////////////////////////////////////
@@ -471,112 +477,167 @@ void ApplicationManager::Change_AppMode(bool x) {
 
 bool ApplicationManager::Validation() {
 	int count = 0;
+	int num_of_validtion = 0;
 	for (int i = 0; i < CompCount; i++) {
 		const Ground* ptrG = dynamic_cast<const Ground*>(CompList[i]);
-		if (ptrG)
+		if (ptrG != nullptr)
 			count++;
 		if (CompList[i] != nullptr) {
 			int  flag_1 = 0, flag_2 = 0;
-			int* Co = new int[4];
+			int* Co = new int[2];
 			Co[0] = CompList[i]->GetGraphicsInfo()->PointsList[0].x + pUI->getCompWidth();
-			Co[1] = CompList[i]->GetGraphicsInfo()->PointsList[0].y + pUI->getCompHeight() / 2;
-			Co[2] = CompList[i]->GetGraphicsInfo()->PointsList[0].x;
-			Co[3] = CompList[i]->GetGraphicsInfo()->PointsList[0].y + pUI->getCompHeight() / 2;
+			
+			Co[1] = CompList[i]->GetGraphicsInfo()->PointsList[0].x;
+
+			// There is the heck of randomness
+
+			//let's work on the first terminal
 			for (int i = 0; i < ConnectionCount; i++) {
 
 				if (ConnectionList[i]->terminals_getter()[0] == Co[0]) {
-					flag_1 = 1;
+					flag_1 += 1;
 					cout << "Flag1 is " << flag_1 << endl;
+					ConnectionList[i]->Set_Selection(true);
 				}
+
 			}
+			if (flag_1 == 0) {
+				for (int i = 0; i < ConnectionCount; i++) {
+
+					if (ConnectionList[i]->terminals_getter()[2] == Co[0]) {
+						flag_1 += 1;
+						cout << "Flag1 is " << flag_1 << endl;
+						ConnectionList[i]->Set_Selection(true);
+					}
+				}
+
+
+			}
+
+			//--------------------------------------------
+
+			//Let's work on the second Terminal
+
+
+
 			for (int i = 0; i < ConnectionCount; i++) {
-				if (ConnectionList[i]->terminals_getter()[2] == Co[2]) {
-					flag_2 = 1;
+				if (ConnectionList[i]->terminals_getter()[0] == Co[1]) {
+					flag_2 += 1;
 					cout << "Flag2 is " << flag_2 << endl;
+					ConnectionList[i]->Set_Selection(true);
+
 				}
 			}
+			if (flag_2 == 0) {
+				for (int i = 0; i < ConnectionCount; i++) {
+					if (ConnectionList[i]->terminals_getter()[2] == Co[1]) {
+						flag_2 += 1;
+						cout << "Flag2 is " << flag_2 << endl;
+						ConnectionList[i]->Set_Selection(true);
+					}
+				}
+			}
+
+
 			if (flag_1 == 0 || flag_2 == 0) {
 				pUI->PrintMsg("This Component is not fully connected");
 				CompList[i]->SetSelection(true);
 
 				//pUI->GetSrting();
 				return false;
+			}                    
+			// there is a bit of randomness
+
+
+			if (flag_1 == 1 && flag_2 == 1)
+				num_of_validtion++;
+
+			if (flag_1 > 1 || flag_2 > 1) {
+				pUI->PrintMsg("This Component has multiple connections. ");
+				CompList[i]->SetSelection(true);
+				return false;
 			}
-			else
-				return true;
+
+				
 
 		}
 	}
-	if (count == 1)
+	if (num_of_validtion == CompCount && count == 1)
 		return true;
-	else {
+	
+		
+	if(count == 0) {
 		pUI->PrintMsg("There is no Ground in the circuit. ");
+		return false;
+	}
+	if (count > 1) {
+		pUI->PrintMsg("There is more than one Ground in the circuit. ");
 		return false;
 	}
 		
 		
 
-	pUI->PrintMsg("This Circuit is valid");
+	
 
 }
 void ApplicationManager::Update_CompList() {
 	Component* NewList[200];
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] != nullptr) {
+			
 			NewList[i] = CompList[i];
+			NewList[i]->SetGraphicsInfo(CompList[i]->GetGraphicsInfo()) ;
 		}	
 	}
-	for (int i = 0; i < CompCount; i++) {
-	CompList[i] = nullptr;
-	delete CompList[i];
+	/*for (int i = 0; i < CompCount; i++) {
+		CompList[i] = nullptr;
+		delete CompList[i];
 
-	}
-	delete[] CompList;
-	Component* CompList[200];
+	}*/
+	
 	for (int i = 0; i < CompCount; i++) {
 		CompList[i] = NewList[i];
+		CompList[i]->SetGraphicsInfo(NewList[i]->GetGraphicsInfo());
 	}
 
-	for (int i = 0; i < CompCount; i++) {
+	/*for (int i = 0; i < CompCount; i++) {
 		NewList[i] = nullptr;
 		delete NewList[i];
 
 	}
-	delete[] NewList;
+	delete[] NewList;*/
 
 	
 
 }
 
-double ApplicationManager::Current()
-{
-	double resistor = 0;
-	double voltage = 0;
-	for (int i = 0; i < CompCount; i++) {
-		const Resistor* ptrR = dynamic_cast<const Resistor*>(CompList[i]);
-		const Bulb* ptrB = dynamic_cast<const Bulb*>(CompList[i]);
-		const Buzzer* ptrZ = dynamic_cast<const Buzzer*>(CompList[i]);
-		const Battery* ptrBAT = dynamic_cast<const Battery*>(CompList[i]);
-		if (ptrR || ptrB || ptrZ)
-			resistor += double(CompList[i]->getvalue());
-		if (ptrBAT)
-			voltage += double(CompList[i]->getvalue());
-	}
-	return (voltage / resistor);
-}
+//double ApplicationManager::Current()
+//{
+//	double resistor = 0;
+//	double voltage = 0;
+//	for (int i = 0; i < CompCount; i++) {
+//		const Resistor* ptrR = dynamic_cast<const Resistor*>(CompList[i]);
+//		const Bulb* ptrB = dynamic_cast<const Bulb*>(CompList[i]);
+//		const Buzzer* ptrZ = dynamic_cast<const Buzzer*>(CompList[i]);
+//		const Battery* ptrBAT = dynamic_cast<const Battery*>(CompList[i]);
+//		if (ptrR || ptrB || ptrZ)
+//			resistor += double(CompList[i]->getvalue());
+//		if (ptrBAT)
+//			voltage += double(CompList[i]->getvalue());
+//	}
+//	return (voltage / resistor);
+//}
 
-void ApplicationManager::SelectFuntion() {
-	for (int i = 0; i < ConnectionCount; i++) {
-		if (CompList[i]->GetGraphicsInfo()->PointsList[0].x  < x
-			&& CompList[i]->GetGraphicsInfo()->PointsList[1].x > x && CompList[i]->GetGraphicsInfo()->PointsList[0].y < y
-			&& CompList[i]->GetGraphicsInfo()->PointsList[1].y > y) {
-
-			CompList[i]->SetSelection(true);
-			CompList[i]->Draw(pUI);
-			pUI->PrintMsg("the condition is working");
-			//flag = 1;
-		}
+bool ApplicationManager::SelectFuntion() {
+	if (80 < y && y < 600) {
+		return true;
 	}
+	else {
+		return false;
+	}
+		
+		
+	
 }
 
 
