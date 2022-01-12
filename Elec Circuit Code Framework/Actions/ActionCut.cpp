@@ -1,47 +1,52 @@
-#include "ActionCopy.h"
+#include "ActionCut.h"
 #include "..\ApplicationManager.h"
 
-ActionCopy::ActionCopy(ApplicationManager* pApp) :Action(pApp)
+ActionCut::ActionCut(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-ActionCopy::~ActionCopy(void)
+ActionCut::~ActionCut(void)
 {
 }
 
-void ActionCopy::Execute()
+void ActionCut::Execute()
 {
 
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("select the componenet to copy");
+	pUI->PrintMsg("select the componenet to cut");
 
 	pManager->SetAllFalse();
 
 	pManager->ExecuteAction(SELECT);
+	
+	
 
 	Component* CompToBeCopied = pManager->get_The_Selected_Component();
 
+	pManager->CheckCompType();
+
+	pManager->Delete_Component();
+
 	pManager->SetCopiedData(CompToBeCopied);
 
-	pManager->CheckCompType();
 	//pManager->GetTheCopyingData();
 
 
 
-	pUI->PrintMsg("Item copied");
+	pUI->PrintMsg("Item Cutted");
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 
-	
+
 
 }
 
-void ActionCopy::Undo()
+void ActionCut::Undo()
 {}
 
-void ActionCopy::Redo()
+void ActionCut::Redo()
 {}
 

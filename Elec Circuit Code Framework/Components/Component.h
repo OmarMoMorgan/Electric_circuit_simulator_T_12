@@ -14,7 +14,7 @@ class Component
 {
 private:
 	string m_Label;
-	string value;
+	
 	
 protected:
 	//Each component has two ending terminals (term1, term2)
@@ -31,6 +31,7 @@ protected:
 	GraphicsInfo *m_pGfxInfo;	//The parameters required to draw a component
 
 	bool selected_o = false;
+	double value;
 
 public:
 	Component(GraphicsInfo *r_GfxInfo);
@@ -70,7 +71,7 @@ public:
 	void setLabel(string text);
 	string getLabel();
 	void setValue(string v);
-	string getvalue();
+	double getvalue();
 	Component();	
 	
 	

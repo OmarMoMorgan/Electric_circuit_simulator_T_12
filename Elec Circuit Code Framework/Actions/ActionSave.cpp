@@ -21,7 +21,9 @@ void ActionSave::Execute()
 	//Print Action Message
 	pUI->PrintMsg("saving file");
 
-	ofstream MyFile("filename.txt");
+	string FileNAme = pUI->GetSrting();
+
+	ofstream MyFile(FileNAme);
 
 	pManager->Save(MyFile);
 

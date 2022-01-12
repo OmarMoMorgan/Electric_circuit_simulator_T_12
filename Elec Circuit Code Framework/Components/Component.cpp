@@ -34,11 +34,11 @@ string Component::getLabel()
 	return m_Label;
 }
 //value
-void Component::setValue(string v)
+void Component::setValue(string v) //omar edited this make it like this for class modulle
 {
-	this->value = v;
+	this->value = std::stod(v); //omar edited this make it like this for class modulle
 }
-string Component::getvalue()
+double Component::getvalue()
 {
 	return value;
 }

@@ -7,6 +7,7 @@
 #include "Components\Component.h"
 #include "Actions\ActionConnection.h"
 #include "Actions\ActionSelect.h"
+#include <atlstr.h>
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -25,10 +26,16 @@ private:
 	int x, y;
 
 	//these are the data neeeded to copy the componenet
+	struct CopyingData
+	{
+		int value;
+		//string label;
+		Component* ItmselectedToCopy;
+		int TellType; // this integer will hae values from 1 to 7 that will be determined after dyamic cast then it can be used later
+	};
 	
-	
+	CopyingData TheOnlyCopiedData;
 
-public:
 
 
 public:	
@@ -65,7 +72,7 @@ public:
 	~ApplicationManager();
 
 	void Save(ofstream &MYFile);
-	//void Load(ifstream& MYFile);
+	void Load(ifstream& MYFile);
 	void Exit();
 	
 	
@@ -85,8 +92,14 @@ public:
 
 
 	void SelectFuntion();
-	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
+	void SetCopiedData(Component *ItmabtCopy);
+	//CopyingData GetCopiedData();
 
+	//Item_data_for_copy* GetTheCopyingData() { return TheCopiedData; }
+	void CheckCompType();
+	void ModifyAfterCreate();
+	int casesForPaste = 1;
+	int GetTellType();
 };
 
 #endif

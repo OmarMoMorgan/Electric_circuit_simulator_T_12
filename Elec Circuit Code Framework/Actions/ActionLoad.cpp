@@ -2,6 +2,7 @@
 #include "..\ApplicationManager.h"
 #include <iostream>
 #include <fstream>
+
 using namespace std;
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) :Action(pApp)
@@ -19,21 +20,33 @@ void ActionLoad::Execute()
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("Loading file file");
+	pUI->PrintMsg("Loading file ");
 	
-	ifstream MyFile("filename.txt");
+	int numComp = 0;
+	string f;
+	string Comptype;
+	int id;
+	string label;
+	int value;
+	GraphicsInfo* pGInfo = new GraphicsInfo(2);
+
+	string FileNAme = pUI->GetSrting();
+
+	ifstream MyFile(FileNAme);
 	if (!MyFile) {
 		pUI->PrintMsg("error couldn't open file");
 		
 	}
-	/*else {
+	else {
+		//getline(cin, f) >> numComp;
 		pManager->Load(MyFile);
-		pUI->PrintMsg("loading circuit done");
-	}*/
+		
+		
+	}
 
-	//pManager->Save(MyFile);
+	pUI->PrintMsg("loaded ");
 
-	//pUI->PrintMsg("file saved");
+	
 	/*for (int i = 0; i < pManager->GetCompCount(); i++) {
 		pManager->GetListComponents()[i]->Save(int id, ofstream & MyFile, const string label, int value);
 	}*/
@@ -45,16 +58,9 @@ void ActionLoad::Execute()
 	//pUI->ClearStatusBar();
 
 
-	//GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
+	
 
-	////Calculate the rectangle Corners
-	//int compWidth = pUI->getCompWidth();
-	//int compHeight = pUI->getCompHeight();
-
-	//pGInfo->PointsList[0].x = Cx - compWidth / 2;
-	//pGInfo->PointsList[0].y = Cy - compHeight / 2;
-	//pGInfo->PointsList[1].x = Cx + compWidth / 2;
-	//pGInfo->PointsList[1].y = Cy + compHeight / 2;
+	
 
 	//Battery* pR = new Battery(pGInfo);
 	//pManager->AddComponent(pR);

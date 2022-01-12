@@ -16,6 +16,8 @@
 
 #include "Actions/ActionAddBuzzer.h"
 #include "Actions/ActionAddFuse.h"
+#include "Actions/ActionCopy.h"
+#include "Actions/ActionPaste.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -192,7 +194,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionLoad(this);
 			break;*/
 
-		//this is not the final thing this is crently being tested
 		case COPY:
 			
 			/*for (int j = 0; j < CompCount; j++) {
@@ -200,6 +201,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					Battery* pR = new Battery(&(*CompList[j]) , pGInfo);
 				}
 			}*/
+			pAct = new ActionCopy(this);
+			break;
+		case PASTE:
+			pAct = new ActionPaste(this);
 			break;
 
 		case EXIT:
@@ -338,40 +343,102 @@ void ApplicationManager::Save(ofstream &MYFile) {
 	}
 }
 /////////////////////////////////////////////////////////////////////
-//void ApplicationManager::Load(ifstream& MYFile) {
-//	int Thecompnum = 0;
-//	Component* temp;
-//	string itemtype;
-//	MYFile >> Thecompnum;
-//	for (int i = 0; i < Thecompnum; i++) {
-//		MYFile >> itemtype;
-//		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
-//		if (itemtype == "BAT") {
-//			Battery* pR = new Battery(pGInfo);
-//			AddComponent(pR);
-//			pR->Load(i, MYFile);
-//		}else if(itemtype == "BUL"){
-//			Battery* pR = new Battery(pGInfo);
-//			AddComponent(pR);
-//			pR->Load(i, MYFile);
-//		}
-//		else if (itemtype == "SWI") {
-//			Battery* pR = new Battery(pGInfo);
-//			AddComponent(pR);
-//			pR->Load(i, MYFile);
-//		}
-//		else if (itemtype == "RES") {
-//			Battery* pR = new Battery(pGInfo);
-//			AddComponent(pR);
-//			pR->Load(i, MYFile);
-//		}
-//		else if (itemtype == "GRO") {
-//			Battery* pR = new Battery(pGInfo);
-//			AddComponent(pR);
-//			pR->Load(i, MYFile);
-//		}
-//	}
-//}
+void ApplicationManager::Load(ifstream& MYFile) {
+	while (!MYFile.eof()) {
+		int numComp = 0;
+		string f;
+		string Comptype;
+		int id;
+		string label;
+		int value;
+		GraphicsInfo* pGInfo = new GraphicsInfo(2);
+		MYFile >> Comptype >> id >> label >> value >> pGInfo->PointsList[0].x >> pGInfo->PointsList[0].y;
+		if (Comptype == "Bat") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Battery* pR = new Battery(pGInfo);
+			this->AddComponent(pR);
+		}
+		else if (Comptype == "Bulb") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Bulb* pR = new Bulb(pGInfo);
+			this->AddComponent(pR);
+		}
+		else if (Comptype == "Buz") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Buzzer* pR = new Buzzer(pGInfo);
+			this->AddComponent(pR);
+		}
+		else if (Comptype == "Fuse") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Fuse* pR = new Fuse(pGInfo);
+			this->AddComponent(pR);
+		}
+		else if (Comptype == "GRD") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Ground* pR = new Ground(pGInfo);
+			this->AddComponent(pR);
+		}
+		else if (Comptype == "RES") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Resistor* pR = new Resistor(pGInfo);
+			this->AddComponent(pR);
+		}
+		else if (Comptype == "SWI") {
+			int compWidth = pUI->getCompWidth();
+			int compHeight = pUI->getCompHeight();
+
+			pGInfo->PointsList[0].x = pGInfo->PointsList[0].x - compWidth / 2;
+			pGInfo->PointsList[0].y = pGInfo->PointsList[0].y - compHeight / 2;
+			pGInfo->PointsList[1].x = pGInfo->PointsList[0].x + compWidth / 2;
+			pGInfo->PointsList[1].y = pGInfo->PointsList[0].y + compHeight / 2;
+
+			Switch* pR = new Switch(pGInfo);
+			this->AddComponent(pR);
+		}
+	}
+}
 /////////////////////////////////////////////////////////////////////
 void ApplicationManager::Exit() {	
 	for (int i = 0; i < CompCount; i++) {
@@ -513,3 +580,71 @@ void ApplicationManager::SelectFuntion() {
 }
 
 
+void ApplicationManager::SetCopiedData(Component *ItmabtCopy ){
+	//CopyingData TheCompUniqueData();
+	TheOnlyCopiedData.value = ItmabtCopy->getvalue();
+	TheOnlyCopiedData.ItmselectedToCopy = ItmabtCopy;
+}
+
+
+void ApplicationManager::CheckCompType() {
+	//int num;
+	Component* temp = TheOnlyCopiedData.ItmselectedToCopy;
+	//List of pointers that will be all set to null 
+	switch (casesForPaste) {
+	case 1:
+		//Battery* Ba = dynamic_cast<*Battery>(temp);
+		if (dynamic_cast<Battery*>(temp)) {
+			TheOnlyCopiedData.TellType = 1;
+			break;
+			//return 1;
+		}
+	case 2:
+		if (dynamic_cast<Bulb*>(temp)) {
+			TheOnlyCopiedData.TellType = 2;
+			break;
+			//return 2;
+		}
+	case 3:
+		if (dynamic_cast<Buzzer*>(temp)) {
+			TheOnlyCopiedData.TellType = 3;
+			break;
+			//return 3;
+		}
+	case 4:
+		if (dynamic_cast<Fuse*>(temp)) {
+			TheOnlyCopiedData.TellType = 4;
+			break;
+			//return 4;
+		}
+	case 5:
+		if (dynamic_cast<Ground*>(temp)) {
+			TheOnlyCopiedData.TellType = 5;
+			break;
+			//return 5;
+		}
+	case 6:
+		if (dynamic_cast<Resistor*>(temp)) {
+			TheOnlyCopiedData.TellType = 6;
+			break;
+			//return 6;
+		}
+	case 7:
+		if (dynamic_cast<Switch*>(temp)) {
+			TheOnlyCopiedData.TellType = 7;
+			break;
+			//return 7;
+		}
+	default:
+		TheOnlyCopiedData.TellType = 0;
+		//return 0;
+	}
+}
+
+void ApplicationManager::ModifyAfterCreate() {
+	CompList[CompCount -1 ]->setValue(to_string(TheOnlyCopiedData.value));
+}
+
+int ApplicationManager::GetTellType() {
+	return TheOnlyCopiedData.TellType;
+}

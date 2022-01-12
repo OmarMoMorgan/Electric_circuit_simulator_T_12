@@ -119,10 +119,12 @@
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwi.cpp" />
     <ClCompile Include="Actions\ActionConnection.cpp" />
+    <ClCompile Include="Actions\ActionCut.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
     <ClCompile Include="Actions\ActionCopy.cpp" />
     <ClCompile Include="Actions\ActionExit.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
+    <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
     <ClCompile Include="Actions\ActionToDesign.cpp" />
@@ -170,6 +172,7 @@
     <ClCompile Include="Components\Connection.cpp" />
     <ClCompile Include="Components\Fuse.cpp" />
     <ClCompile Include="Components\Ground.cpp" />
+    <ClCompile Include="Components\Module.cpp" />
     <ClCompile Include="Components\Resistor.cpp" />
     <ClCompile Include="Components\Switch.cpp" />
     <ClCompile Include="main.cpp" />
@@ -186,10 +189,12 @@
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwi.h" />
     <ClInclude Include="Actions\ActionConnection.h" />
+    <ClInclude Include="Actions\ActionCut.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
     <ClInclude Include="Actions\ActionCopy.h" />
     <ClInclude Include="Actions\ActionExit.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
+    <ClInclude Include="Actions\ActionPaste.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
     <ClInclude Include="Actions\ActionToDesign.h" />
@@ -221,6 +226,7 @@
     <ClInclude Include="Components\Connection.h" />
     <ClInclude Include="Components\Fuse.h" />
     <ClInclude Include="Components\Ground.h" />
+    <ClInclude Include="Components\Module.h" />
     <ClInclude Include="Components\Resistor.h" />
     <ClInclude Include="Components\Switch.h" />
     <ClInclude Include="Defs.H" />
